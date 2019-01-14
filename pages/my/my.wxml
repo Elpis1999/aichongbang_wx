@@ -1,0 +1,35 @@
+<!-- pages/my/my.wxml -->
+<view class="header">
+    <view class="headPhoto-container">
+        <image src="{{user.avatarUrl}}" class="head-photo" />
+        <text class="user-name">{{user.nickName}}</text>
+    </view>
+    <view class="order">
+        <view class="my-order">
+            <text>我的订单</text>
+            <view>
+                <text>查看全部订单</text>
+                <font-icon name="xiayibu" size="35" color="rgb(144, 144, 144)" style="margin:0 38rpx 0 26rpx;" />
+            </view>
+        </view>
+        <view class="order-status">
+            <view>
+                <font-icon name="weiwancheng" size="60" color="black" />
+                <text>未完成</text>
+            </view>
+            <view>
+                <font-icon name="yiwancheng" size="60" color="black" />
+                <text>已完成</text>
+            </view>
+        </view>
+    </view>
+    <view class="other">
+        <view bind:tap="goShoppingCart">
+            <view>
+                <font-icon name="qicheqianlian-1-copy" size="60" color="black" style="margin-right:26rpx;" />
+                <text style=" font-size: 13pt;">购物车</text>
+            </view>
+            <font-icon name="xiayibu" size="35" color="rgb(144, 144, 144)" style="margin:0 38rpx 0 26rpx;" />
+        </view>
+    </view>
+</view>

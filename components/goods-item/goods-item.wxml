@@ -1,0 +1,9 @@
+<!-- components/goods-item/goods-item.wxml -->
+<view class="goods-item">
+    <view>
+        <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" />
+    </view>
+    <text class="line-limit-length">狗零食牛肉条hahahah</text>
+    <text class="line-limit-length">500g</text>
+    <text>￥9.99</text>
+</view>

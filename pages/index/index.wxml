@@ -1,13 +1,85 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
+<!-- index.wxml -->
+<scroll-view scroll-y="{{true}}">
+    <view class="address">
+        <view>
+            <font-icon name="weizhi" size="40" color="white" />
+            <text style="margin-left:7rpx;font-size:12pt;">{{address}}</text>
+        </view>
+        <font-icon name="xiayibu" size="40" color="white" />
+    </view>
+    <view class="search">
+        <input type="text" placeholder="搜索商品/服务" />
+        <font-icon name="sousuo" size="50" color="black" style="position:absolute;top:30rpx;left:50rpx;" />
+    </view>
+    <view class="title-img"></view>
+    <view class="classification-container">
+        <view class="classification">
+            <font-icon name="fuwu" size="60" color="black" />
+            <text>服务</text>
+        </view>
+        <view class="classification">
+            <font-icon name="shangpin" size="60" color="black" />
+            <text>商品</text>
+        </view>
+        <view class="classification">
+            <font-icon name="paihangbang" size="60" color="black" />
+            <text>排行榜</text>
+        </view>
+    </view>
+    <view class="decorate"></view>
+    <view>
+        <view class="goods-title">
+            <text>狗粮</text>
+        </view>
+        <view class="goods-content">
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+        </view>
+    </view>
+    <view>
+        <view class="goods-title">
+            <text>猫粮</text>
+        </view>
+        <view class="goods-content">
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+        </view>
+    </view>
+    <view>
+        <view class="goods-title">
+            <text>洗护</text>
+        </view>
+        <view class="goods-content">
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+        </view>
+    </view>
+    <view>
+        <view class="goods-title">
+            <text>修剪</text>
+        </view>
+        <view class="goods-content">
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+            <goods-item />
+        </view>
+    </view>
+    <view class="shopping-cart" bindtap="goShoppingCart">
+        <font-icon name="qicheqianlian-1-copy" size="60" color="black" style="line-height:102rpx;" />
+    </view>
+</scroll-view>

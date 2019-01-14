@@ -1,33 +1,17 @@
-// pages/my/my.js
+// pages/shoppingcart/shoppingcart.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    address: ""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getLocation({
-      type: 'gcj02',
-      success: (res) => {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        wx.request({
-          url: 'https://api.map.baidu.com/geocoder/v2/?ak=1PZH3APruxDvNkbQheag4vXntKZlF6Bu&location=' + latitude + "," + longitude + "&output=json",
-          method: "get",
-          success: (res) => {
-            this.setData({
-              address: res.data.result.formatted_address
-            });
-          }
-        })
-      }
-    })
 
   },
 
@@ -78,10 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  goShoppingCart(e) {
-    wx.switchTab({
-      url: "../shoppingcart/shoppingcart"
-    });
   }
 })

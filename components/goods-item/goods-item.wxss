@@ -1,0 +1,28 @@
+/* components/goods-item/goods-item.wxss */
+.goods-item {
+    width: 216rpx;
+}
+
+.goods-item image {
+    width: 216rpx;
+    height: 246rpx;
+}
+
+.goods-item text {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    color: white;
+    font-size: 12pt;
+}
+
+.goods-item text:last-child {
+    color: rgb(218, 118, 52);
+}
+
+.line-limit-length {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
