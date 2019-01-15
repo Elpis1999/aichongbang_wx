@@ -1,0 +1,25 @@
+/* components/commodity-item/commodity-item.wxss */
+.serve-item {
+    width: 333rpx;
+    background-color: white;
+    margin-top: 20rpx;
+    padding-bottom: 30rpx;
+}
+
+.serve-item image {
+    width: 333rpx;
+    height: 335rpx;
+}
+.serve-item>view:first-child {
+    font-size: 0;
+}
+.serve-item text {
+    padding: 0 0 0 20rpx;
+    display: block;
+}
+
+.line-limit-length {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

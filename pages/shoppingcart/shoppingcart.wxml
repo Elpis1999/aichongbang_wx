@@ -1,2 +1,58 @@
-<!--pages/shoppingcart/shoppingcart.wxml-->
-<text>购物车</text>
+<!-- pages/cart/cart.wxml -->
+<view class="cartName">
+    <view>
+        <view class="her">
+            <font-icon name="xuanzhong" size="40" color="orange" style="margin-right:20rpx;" />
+            <font-icon name="dianpu" size="40" color="#8d8d8d" />
+            <text>疯狂的动物宠物用品店</text>
+        </view>
+        <text class="bianji">编辑</text>
+    </view>
+</view>
+<view class="carttext">
+    <view class="carttxt">
+        <font-icon name="xuanzhong" size="40" color="orange" />
+        <view class="img">
+            <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" />
+        </view>
+        <view class="num">
+            <text>狗狗的零食1300g大礼包，泰迪宠物磨牙棒咬胶骨头幼犬牛肉火腿肠</text>
+            <text>牛肉，6月以上</text>
+            <view class="jiage">
+                <text>￥17.80</text>
+                <text>X1</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="carttext">
+    <view class="carttxt">
+        <font-icon name="xuanzhong" size="40" color="orange" />
+        <view class="img">
+            <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" />
+        </view>
+        <view class="num">
+            <text>狗狗的零食1300g大礼包，泰迪宠物磨牙棒咬胶骨头幼犬牛肉火腿肠</text>
+            <text>牛肉，6月以上</text>
+            <view class="jiage">
+                <text>￥17.80</text>
+                <text>X1</text>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- footer -->
+<view class="footer">
+    <view class="footerleft">
+        <font-icon name="xuanzhong" size="40" color="orange" style="margin-left:20rpx;" />
+        <text>全选</text>
+    </view>
+    <view class="footerright">
+        <view class="nums">
+            <text>合计:</text>
+            <text style="color:orange">￥9.90</text>
+            <view>不含运费</view>
+        </view>
+        <view class="delete">结算</view>
+    </view>
+</view>

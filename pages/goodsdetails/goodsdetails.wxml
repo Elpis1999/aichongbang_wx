@@ -1,0 +1,67 @@
+<!-- pages/details/details.wxml -->
+<!-- 头图 -->
+<goods-banner />
+<!-- 商品名字 -->
+<view class="goodsname">
+    <view>
+        <view class="nameG">
+            <text>宠物狗狗用品狗碗狗盆猫咪碗狗食盆双碗泰迪自动饮水喂食器</text>
+            <view>￥29.90</view>
+        </view>
+        <view class="rightG">
+            <font-icon name="fenxiang" size="40" color="orange" />
+            <text>分享</text>
+        </view>
+    </view>
+</view>
+<!-- 运费 -->
+<view class="yunfei">
+    <view>
+        <text>运费￥0.00-15.00</text>
+        <text>销量44</text>
+        <text style="margin-right:40rpx;">剩余66</text>
+    </view>
+</view>
+<!-- 担保 -->
+<view class="danbao">
+    <font-icon name="zan" size="30" color="green" />
+    <text>有赞担保</text>
+    <text>全程护航，请放心购买</text>
+</view>
+<!-- 店名 -->
+<view class="headerss">
+    <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" alt="" />
+    <view class="dname">
+        <text>疯狂的小狗宠物商店</text>
+        <text>官方</text>
+    </view>
+    <view class="jindians">进店</view>
+</view>
+<view class="danbao">
+    <text>商品详情</text>
+</view>
+<!-- 图片 -->
+<view class="headers">
+    <!-- <image src="../../img/1547452426(1).png" /> -->
+</view>
+<view class="headers">
+    <!-- <image src="../../img/1547452426(1).png" /> -->
+</view>
+<view class="headers">
+    <!-- <image src="../../img/1547452426(1).png" /> -->
+</view>
+<!-- footer -->
+<view class="footer">
+    <view class="footerleft">
+        <view>
+            <font-icon name="kefu" size="40" color="#8d8d8d" />
+            <view>客服</view>
+        </view>
+        <view>
+            <font-icon name="qicheqianlian-1-copy" size="40" color="#8d8d8d" />
+            <view>购物车</view>
+        </view>
+    </view>
+    <view class="footerright">加入购物车</view>
+    <view class="footerrights">立即购买</view>
+</view>

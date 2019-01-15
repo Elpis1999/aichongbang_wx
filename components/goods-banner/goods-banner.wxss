@@ -1,0 +1,11 @@
+/* components/goods-banner/goods-banner.wxss */
+
+.banner {
+    width: 100%;
+    height: 746rpx;
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+}

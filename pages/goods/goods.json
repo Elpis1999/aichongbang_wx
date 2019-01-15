@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "commodity-item": "../../components/commodity-item/commodity-item"
+  },
+  "navigationBarTitleText": "商品"
+}

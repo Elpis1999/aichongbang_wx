@@ -1,31 +1,38 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
+    "pages/goods/goods",
     "pages/shoppingcart/shoppingcart",
-    "pages/my/my"
+    "pages/goodsdetails/goodsdetails",
+    "pages/logs/logs",
+    "pages/my/my",
+    "pages/service/service",
+    "pages/rankinglist/rankinglist",
+    "pages/newranking/newranking",
+    "pages/hotranking/hotranking"
   ],
   "tabBar": {
-    "selectedColor": "#e12020",
+    "selectedColor": "#FFA500",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/shouye.png",
-        "selectedIconPath": "images/shouye (1).png"
+        "selectedIconPath": "images/s_shouye.png"
       },
       {
         "pagePath": "pages/shoppingcart/shoppingcart",
         "text": "购物车",
         "iconPath": "images/qicheqianlian-1-copy.png",
-        "selectedIconPath": "images/qicheqianlian-1-copy (1).png"
+        "selectedIconPath": "images/s_qicheqianlian-1-copy.png"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "images/wode.png",
-        "selectedIconPath": "images/wode (1).png"
+        "selectedIconPath": "images/s_Icon_wode.png"
       }
     ]
   },

@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "font-icon": "../../components/font-icon/font-icon",
-    "goods-item": "../../components/goods-item/goods-item"
+    "goods-item": "../../components/goods-item/goods-item",
+    "service-item": "../../components/service-item/service-item"
   },
   "navigationBarTitleText": "爱宠邦"
 }

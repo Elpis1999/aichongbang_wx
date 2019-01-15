@@ -1,0 +1,9 @@
+<!-- components/goods-item/goods-item.wxml -->
+<view class="service-item">
+    <view>
+        <image src="{{url+'/upload/'+info.cover_map}}" />
+    </view>
+    <text class="line-limit-length">{{info.sur_name+info.sur_rules}}</text>
+    <text class="line-limit-length">{{info.sur_time}}</text>
+    <text>{{'￥'+info.sur_price}}</text>
+</view>

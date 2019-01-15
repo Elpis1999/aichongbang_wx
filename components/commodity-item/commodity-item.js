@@ -1,4 +1,4 @@
-// components/goods-item/goods-item.js
+// components/commodity-item/commodity-item.js
 let {
   url
 } = require("../../config/index");

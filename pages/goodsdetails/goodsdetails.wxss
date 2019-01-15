@@ -1,0 +1,184 @@
+/* pages/details/details.wxss */
+page {
+    background-color: rgb(225, 225, 225);
+    margin-bottom: 100rpx;
+}
+
+.headers {
+    width: 100%;
+    height: 600rpx;
+}
+
+.headers>image {
+    width: 100%;
+    height: 600rpx;
+}
+
+.goodsname {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20rpx;
+    background-color: white;
+    padding-top: 20rpx;
+}
+
+.goodsname>view {
+    display: flex;
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid rgb(225, 225, 225);
+    padding: 0 0 20rpx 0;
+}
+
+.rightG {
+    width: 230rpx;
+    text-align: center;
+}
+
+.rightG>text {
+    display: block;
+    font-size: 9pt;
+    margin-top: 10rpx;
+}
+
+.nameG>view {
+    color: orange;
+    font-weight: bold;
+}
+
+.nameG>text {
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.yunfei {
+    width: 100%;
+    padding: 30rpx 0 0 0;
+    background-color: white;
+}
+
+.yunfei>view {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid rgb(225, 225, 225);
+    padding-bottom: 28rpx;
+}
+
+.yunfei text {
+    font-size: 8pt;
+    color: rgb(137, 137, 137);
+}
+
+.danbao>text {
+    font-size: 8pt;
+}
+
+.danbao>text:nth-child(2) {
+    color: green;
+    font-weight: bold;
+    margin-right: 20rpx;
+    margin-left: 10rpx;
+}
+
+.danbao {
+    padding-left: 20rpx;
+    width: 100%;
+    border-bottom: 2rpx solid rgb(225, 225, 225);
+    padding: 12rpx 0;
+    background-color: white;
+    padding-left: 20rpx;
+}
+
+.headerss>image {
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 40rpx;
+    margin-left: 15rpx;
+    border-radius: 50%;
+}
+
+.headerss {
+    display: flex;
+    align-items: center;
+    border-bottom: 2rpx solid rgb(225, 225, 225);
+    margin-bottom: 10rpx;
+    background-color: white;
+    padding: 10rpx 0;
+    margin-top: 10rpx;
+}
+
+.dname>text {
+    display: block;
+    font-size: 9pt;
+    color: rgb(137, 137, 137);
+}
+
+.dname>text:first-child {
+    margin-bottom: 10rpx;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.dname>text:last-child {
+    display: block;
+    font-size: 7pt;
+    width: 70rpx;
+    height: 36rpx;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    line-height: 36rpx;
+    border-radius: 10rpx;
+}
+
+.dname {
+    flex: 1;
+}
+
+.jindians {
+    font-size: 8pt;
+    color: orange;
+    width: 70rpx;
+    height: 36rpx;
+    text-align: center;
+    line-height: 36rpx;
+    border: 2rpx solid orange;
+    border-radius: 10rpx;
+    margin-right: 30rpx;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footerleft {
+    display: flex;
+}
+
+.footerleft>view>view {
+    font-size: 8pt;
+}
+
+.footerleft>view {
+    width: 90rpx;
+    text-align: center;
+    background-color: white;
+}
+
+.footerright,
+.footerrights {
+    width: 900rpx;
+    text-align: center;
+    line-height: 80rpx;
+    color: white;
+    font-size: 10pt;
+    background-color: orange;
+}
+
+.footerright {
+    background-color: gray;
+}

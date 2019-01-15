@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "font-icon": "../../components/font-icon/font-icon"
+  },
   "navigationBarTitleText": "购物车"
 }

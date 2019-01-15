@@ -1,0 +1,11 @@
+<!-- components/commodity-item/commodity-item.wxml -->
+<view class="commodity-item">
+    <view>
+        <image src="{{url+'/upload/'+info.bigpic}}" />
+    </view>
+    <view>
+        <text class="line-limit-length" style="display: block;">{{info.supp_gd_brand}}</text>
+        <text class="line-limit-length" style="display: block;margin-bottom:35rpx;">{{info.supp_gd_install}}</text>
+        <text style="color:orange;">{{'￥'+info.saleprice}}</text>
+    </view>
+</view>

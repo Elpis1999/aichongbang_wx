@@ -13,15 +13,15 @@
     </view>
     <view class="title-img"></view>
     <view class="classification-container">
-        <view class="classification">
+        <view class="classification" bind:tap="toServer">
             <font-icon name="fuwu" size="60" color="black" />
             <text>服务</text>
         </view>
-        <view class="classification">
+        <view class="classification" bind:tap="toGoods">
             <font-icon name="shangpin" size="60" color="black" />
             <text>商品</text>
         </view>
-        <view class="classification">
+        <view class="classification" bind:tap="toRankingList">
             <font-icon name="paihangbang" size="60" color="black" />
             <text>排行榜</text>
         </view>
@@ -32,12 +32,7 @@
             <text>狗粮</text>
         </view>
         <view class="goods-content">
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
+            <goods-item wx:for="{{dogFood}}" info="{{item}}" wx:key="{{item._id}}" />
         </view>
     </view>
     <view>
@@ -45,12 +40,7 @@
             <text>猫粮</text>
         </view>
         <view class="goods-content">
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
+            <goods-item wx:for="{{catFood}}" info="{{item}}" wx:key="{{item._id}}" />
         </view>
     </view>
     <view>
@@ -58,12 +48,7 @@
             <text>洗护</text>
         </view>
         <view class="goods-content">
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
+            <service-item wx:for="{{shearing}}" info="{{item}}" wx:key="{{item._id}}" />
         </view>
     </view>
     <view>
@@ -71,12 +56,7 @@
             <text>修剪</text>
         </view>
         <view class="goods-content">
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
-            <goods-item />
+            <service-item wx:for="{{bathe}}" info="{{item}}" wx:key="{{item._id}}" />
         </view>
     </view>
     <view class="shopping-cart" bindtap="goShoppingCart">

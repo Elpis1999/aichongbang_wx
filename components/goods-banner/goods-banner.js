@@ -1,20 +1,19 @@
-// components/goods-item/goods-item.js
-let {
-  url
-} = require("../../config/index");
+// components/goods-banner/goods-banner.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    info: null
+
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    url
+    imgUrls: [
+      '../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg'
+    ]
   },
 
   /**

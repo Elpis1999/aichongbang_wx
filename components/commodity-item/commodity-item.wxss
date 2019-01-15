@@ -1,0 +1,23 @@
+/* components/commodity-item/commodity-item.wxss */
+.commodity-item {
+    width: 333rpx;
+    background-color: white;
+    margin-top: 20rpx;
+}
+
+.commodity-item image {
+    width: 333rpx;
+    height: 335rpx;
+}
+.commodity-item>view:first-child {
+    font-size: 0;
+}
+.commodity-item>view:last-child {
+    padding: 30rpx 20rpx;
+}
+
+.line-limit-length {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

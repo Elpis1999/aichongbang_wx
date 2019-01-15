@@ -1,11 +1,19 @@
 // pages/my/my.js
+let {
+  url
+} = require("../../config/index");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    address: ""
+    address: "",
+    dogFood: [],
+    catFood: [],
+    shearing: [],
+    bathe: [],
+    url
   },
 
   /**
@@ -27,8 +35,59 @@ Page({
           }
         })
       }
-    })
-
+    });
+    wx.request({
+      url: url + "/wxgoods/indexGoods",
+      method: "get",
+      data: {
+        type: "supp_gd_type",
+        value: "狗粮"
+      },
+      success: (res) => {
+        this.setData({
+          dogFood: res.data
+        });
+      }
+    });
+    wx.request({
+      url: url + "/wxgoods/indexGoods",
+      method: "get",
+      data: {
+        type: "supp_gd_type",
+        value: "猫粮"
+      },
+      success: (res) => {
+        this.setData({
+          catFood: res.data
+        });
+      }
+    });
+    wx.request({
+      url: url + "/wxgoods/indexService",
+      method: "get",
+      data: {
+        type: "sur_name",
+        value: "剪毛"
+      },
+      success: (res) => {
+        this.setData({
+          shearing: res.data
+        });
+      }
+    });
+    wx.request({
+      url: url + "/wxgoods/indexService",
+      method: "get",
+      data: {
+        type: "sur_name",
+        value: "洗澡"
+      },
+      success: (res) => {
+        this.setData({
+          bathe: res.data
+        });
+      }
+    });
   },
 
   /**
@@ -82,6 +141,21 @@ Page({
   goShoppingCart(e) {
     wx.switchTab({
       url: "../shoppingcart/shoppingcart"
+    });
+  },
+  toGoods() {
+    wx.navigateTo({
+      url: "../goods/goods"
+    });
+  },
+  toServer() {
+    wx.navigateTo({
+      url: "../service/service"
+    });
+  },
+  toRankingList() {
+    wx.navigateTo({
+      url: "../rankinglist/rankinglist"
     });
   }
 })

@@ -1,0 +1,6 @@
+<!-- pages/goods/goods.wxml -->
+<scroll-view scroll-y="true" bindscrolltolower="loadMore" class="scroll-view">
+    <view class="goods-container">
+        <commodity-item wx:for="{{goods}}" info="{{item}}" wx:key="{{item._id}}" />
+    </view>
+</scroll-view>

@@ -1,4 +1,4 @@
-// pages/cart/cart.js
+// pages/hotranking/hotranking.js
 Page({
 
   /**

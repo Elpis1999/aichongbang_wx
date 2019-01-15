@@ -1,18 +1,41 @@
-// pages/cart/cart.js
+// pages/goods/goods.js
+let {
+  url
+} = require("../../config/index");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goods: [],
+    page: 1,
+    rows: 4,
+    pagination: {},
+    url
   },
 
+  show() {
+    wx.request({
+      url: url + "/wxgoods/goods",
+      method: "get",
+      data: {
+        page: this.data.page,
+        rows: this.data.rows
+      },
+      success: (res) => {
+        this.setData({
+          goods: [...this.data.goods, ...res.data.rows],
+          pagination: res.data
+        });
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.show();
   },
 
   /**
@@ -62,5 +85,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  loadMore() {
+    if (this.data.page <= this.data.pagination.maxpage) {
+      this.setData({
+        page: this.data.pagination.curpage + 1
+      });
+      this.show();
+    } else {
+      return;
+    }
   }
 })
