@@ -1,6 +1,8 @@
 // pages/my/my.js
 let {
-  url
+  url,
+  APP_SECRET,
+  APP_ID
 } = require("../../config/index");
 Page({
 
@@ -88,6 +90,58 @@ Page({
         });
       }
     });
+    //获取用户信息并注册进数据库
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'https://api.weixin.qq.com/sns/jscode2session',
+          data: {
+            appid: APP_ID,
+            secret: APP_SECRET,
+            js_code: res.code,
+            grant_type: 'authorization_code'
+          },
+          method: 'GET',
+          success: ({
+            data
+          }) => {
+            let openId = data.openid;
+            wx.setStorage({
+              key: 'openId',
+              data: openId
+            })
+            wx.getUserInfo({
+              success: (e) => {
+                let {
+                  nickName,
+                  avatarUrl,
+                  country,
+                  province,
+                  city
+                } = e.userInfo;
+                wx.request({
+                  method: "post",
+                  url: url + "/wxgoods/addPetMaster",
+                  data: {
+                    pm_name: "",
+                    pm_phone: "",
+                    pm_nickname: nickName,
+                    pm_vipcard: "",
+                    pm_pic: avatarUrl,
+                    pm_area: country + "-" + province + "-" + city,
+                    pm_address: [],
+                    pm_integral: "",
+                    pm_ownpet: [],
+                    openId
+                  }
+                });
+              }
+            })
+          }
+        });
+      }
+    })
   },
 
   /**

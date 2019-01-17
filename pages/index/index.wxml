@@ -32,7 +32,7 @@
             <text>狗粮</text>
         </view>
         <view class="goods-content">
-            <goods-item wx:for="{{dogFood}}" info="{{item}}" wx:key="{{item._id}}" />
+            <goods-item wx:for="{{dogFood}}" info="{{item}}" wx:key="{{item._id}}" bind:tap="tap" />
         </view>
     </view>
     <view>

@@ -1,4 +1,4 @@
-// components/goods-item/goods-item.js
+// components/ranking-item/ranking-item.js
 let {
   url
 } = require("../../config/index");

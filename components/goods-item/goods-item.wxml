@@ -1,5 +1,5 @@
 <!-- components/goods-item/goods-item.wxml -->
-<view class="goods-item">
+<view class="goods-item" bind:tap="toDetails" data-goodsid="{{info._id}}">
     <view>
         <image src="{{url+'/upload/'+info.bigpic}}" />
     </view>

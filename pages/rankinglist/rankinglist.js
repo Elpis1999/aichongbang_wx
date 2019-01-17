@@ -1,5 +1,8 @@
 //index.js  
 //获取应用实例  
+let {
+  url
+} = require("../../config/index");
 var app = getApp()
 Page({
   data: {
@@ -10,8 +13,35 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
+    hotGoods: [],
+    newGoods: [],
+    url
   },
   onLoad: function () {
+
+    wx.request({
+      url: url + "/wxgoods/newGoods",
+      method: "get",
+      success: (res) => {
+        console.log(res.data);
+        this.setData({
+          newGoods: res.data.goods
+        },function(){
+          console.log(this.data.newGoods);
+        });
+      }
+    });
+
+    wx.request({
+      url: url + "/wxgoods/hotGoods",
+      method: "get",
+      success: (res) => {
+        this.setData({
+          hotGoods: res.data.goods
+        });
+      }
+    });
+
     var that = this;
 
     /** 

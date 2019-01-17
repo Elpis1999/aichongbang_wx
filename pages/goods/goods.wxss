@@ -1,9 +1,12 @@
 /* pages/goods/goods.wxss */
 
-page,.scroll-view{
+page,.scroll-view,.goods-container{
+    background-color: rgb(245, 245, 245);
     height: 100%;
 }
-
+page {
+    padding: 0 0 30rpx 0;
+}
 .goods-container {
     padding: 0 30rpx 50rpx 30rpx;
     background-color: rgb(245, 245, 245);

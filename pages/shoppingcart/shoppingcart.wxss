@@ -1,4 +1,7 @@
 /* pages/cart/cart.wxss */
+page {
+    padding-bottom: 91rpx;
+}
 .cartName text {
     font-size: 10pt;
 }
@@ -20,9 +23,27 @@
     padding: 0 0 0 20rpx;
 }
 
+.del {
+    width: 124rpx;
+    height: 239rpx;
+    background-color: orange;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-top: 1rpx solid rgb(225, 225, 225);
+    text-align: center;
+    line-height: 239rpx;
+    color: white;
+}
+
 .bianji {
-    margin-right: 30rpx;
-    color: blue;
+   padding:10rpx 30rpx;
+   text-align: right;
+   font-size: 12pt;
+   color: rgb(73, 73, 211);
+   border-bottom: 1rpx solid rgb(225, 225, 225);
+   margin-left: 20rpx;
+   box-sizing: border-box;
 }
 
 .img {
@@ -39,7 +60,7 @@
 
 .carttxt {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1rpx solid rgb(225, 225, 225);
     padding-bottom: 25rpx;
@@ -51,7 +72,8 @@
 }
 
 .carttext {
-    padding: 15rpx 0 0 20rpx
+    padding: 15rpx 0 0 20rpx;
+    position: relative;
 }
 
 .num>text:nth-child(2) {
@@ -80,6 +102,8 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    background-color: white;
+    z-index: 99;
 }
 
 .footerleft {
@@ -119,4 +143,8 @@
 
 .red {
     color: orange;
+}
+
+.num {
+    flex: 1;
 }

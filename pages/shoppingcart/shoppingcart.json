@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "font-icon": "../../components/font-icon/font-icon"
+    "font-icon": "../../components/font-icon/font-icon",
+    "shoppingcart-counter": "../../components/shoppingcart-counter/shoppingcart-counter"
   },
   "navigationBarTitleText": "购物车"
 }

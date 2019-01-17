@@ -2,12 +2,11 @@
   "usingComponents": {
     "font-icon": "../../components/font-icon/font-icon",
     "goods-banner": "../../components/goods-banner/goods-banner",
-    "modal-frame": "../../components/modal-frame/modal-frame",
     "counter": "../../components/counter/counter"
   },
   "navigationBarBackgroundColor": "#000",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "商品详情",
+  "navigationBarTitleText": "服务详情",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"
 }

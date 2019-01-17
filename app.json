@@ -8,8 +8,8 @@
     "pages/my/my",
     "pages/service/service",
     "pages/rankinglist/rankinglist",
-    "pages/newranking/newranking",
-    "pages/hotranking/hotranking"
+    "pages/servicedetails/servicedetails",
+    "components/counter/counter"
   ],
   "tabBar": {
     "selectedColor": "#FFA500",

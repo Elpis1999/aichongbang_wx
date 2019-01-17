@@ -240,7 +240,7 @@ page {
 
 .maskLayer {
     width: 100%;
-    height: 1780rpx;
+    height: 1950rpx;
     background-color: #000;
     opacity: 0.5;
     position: absolute;
@@ -249,7 +249,7 @@ page {
 
 .choose {
     width: 100%;
-    height: 720rpx;
+    height: 450rpx;
     background-color: white;
     position: fixed;
     bottom: 0;
@@ -284,37 +284,6 @@ page {
     font-size: 12pt;
 }
 
-.goods-type {
-    margin-top: 30rpx;
-    font-size: 12pt;
-}
-
-.goods-type>view {
-    margin-left: 20rpx;
-    border-bottom: 1rpx solid rgb(225, 225, 225);
-
-}
-
-.btn {
-    font-size: 8pt;
-    display: inline-block;
-    width: 106rpx;
-    height: 60rpx;
-    background-color: orange;
-    color: white;
-    border-radius: 7rpx;
-    text-align: center;
-    line-height: 60rpx;
-    margin: 20rpx 0;
-}
-
-.number>view {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 20rpx;
-    padding: 27rpx 20rpx 37rpx 0;
-}
-
 .bigbtn {
     width: 100%;
     height: 100rpx;
@@ -322,4 +291,18 @@ page {
     color: white;
     text-align: center;
     line-height: 100rpx;
+}
+
+.select-time {
+    box-sizing: border-box;
+    padding: 25rpx 0 25rpx 20rpx;
+    font-size: 12pt; 
+}
+
+.picker {
+    padding: 15rpx 0;
+    text-align: center;
+    border-bottom: 1rpx solid rgb(225, 225, 225);
+    border-top: 1rpx solid rgb(225, 225, 225);
+    margin-top: 25rpx;
 }

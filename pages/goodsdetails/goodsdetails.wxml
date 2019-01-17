@@ -1,12 +1,12 @@
 <!-- pages/details/details.wxml -->
 <!-- 头图 -->
-<goods-banner />
+<goods-banner imgUrls="{{imgUrls}}" />
 <!-- 商品名字 -->
 <view class="goodsname">
     <view>
         <view class="nameG">
-            <text>宠物狗狗用品狗碗狗盆猫咪碗狗食盆双碗泰迪自动饮水喂食器</text>
-            <view>￥29.90</view>
+            <text>{{goodsInfo.supp_gd_brand}}</text>
+            <view>￥{{goodsInfo.saleprice}}</view>
         </view>
         <view class="rightG">
             <font-icon name="fenxiang" size="40" color="orange" />
@@ -18,38 +18,55 @@
 <view class="yunfei">
     <view>
         <text>运费￥0.00-15.00</text>
-        <text>销量44</text>
-        <text style="margin-right:40rpx;">剩余66</text>
+        <text>销量{{goodsInfo.salesVolume}}</text>
+        <text style="margin-right:40rpx;">剩余{{goodsInfo.surplus}}</text>
     </view>
 </view>
 <!-- 担保 -->
-<view class="danbao">
+<view class="youzan">
     <font-icon name="zan" size="30" color="green" />
-    <text>有赞担保</text>
-    <text>全程护航，请放心购买</text>
+    <text style="margin-left:10rpx;color:green;">有赞担保</text>
+    <text style="margin-left:30rpx;">全程护航，请放心购买</text>
 </view>
 <!-- 店名 -->
 <view class="headerss">
-    <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" alt="" />
+    <image src="{{url+'/upload/'+goodsInfo.store.store_avatar}}" alt="" />
     <view class="dname">
-        <text>疯狂的小狗宠物商店</text>
+        <text>{{goodsInfo.store.store_name}}</text>
         <text>官方</text>
     </view>
     <view class="jindians">进店</view>
 </view>
 <view class="danbao">
-    <text>商品详情</text>
+    <view class="{{select == 0 ? 'border-bt' : ''}}" bind:tap="tabDetails">
+        <text>商品详情</text>
+    </view>
+    <view class="{{select == 1 ? 'border-bt' : ''}}" bind:tap="tabComment">
+        <text>用户评论</text>
+    </view>
 </view>
 <!-- 图片 -->
-<view class="headers">
-    <!-- <image src="../../img/1547452426(1).png" /> -->
+<view class="details" wx:if="{{select == 0}}">
+    <view class="info-text">
+        <view>
+            <text class="line-limit-length">商品名:{{goodsInfo.supp_gd_brand}}</text>
+            <text class="line-limit-length">品牌:{{goodsInfo.supp_gd_title}}</text>
+            <text class="line-limit-length">净含量:{{goodsInfo.supp_gd_install}}</text>
+        </view>
+        <view style="margin-top:20rpx;">
+            <text class="line-limit-length">口味:{{goodsInfo.supp_gd_taste}}</text>
+            <text class="line-limit-length">产地:{{goodsInfo.supp_gd_from}}</text>
+            <text class="line-limit-length">保质期:{{goodsInfo.supp_gd_keepquality}}</text>
+        </view>
+    </view>
+    <view class="detailsImg">
+        <image class="detailsImg" src="{{url+'/upload/'+goodsInfo.bigpic}}" />
+    </view>
+    <view class="detailsImg">
+        <image class="detailsImg" src="{{url+'/upload/'+goodsInfo.smallpic}}" />
+    </view>
 </view>
-<view class="headers">
-    <!-- <image src="../../img/1547452426(1).png" /> -->
-</view>
-<view class="headers">
-    <!-- <image src="../../img/1547452426(1).png" /> -->
-</view>
+<view class="details" wx:if="{{select == 1}}">321</view>
 <!-- footer -->
 <view class="footer">
     <view class="footerleft">
@@ -58,10 +75,94 @@
             <view>客服</view>
         </view>
         <view>
-            <font-icon name="qicheqianlian-1-copy" size="40" color="#8d8d8d" />
+            <font-icon name="qicheqianlian-1-copy" size="40" color="#8d8d8d" bind:tap="toShoppingCart" />
             <view>购物车</view>
         </view>
     </view>
-    <view class="footerright">加入购物车</view>
-    <view class="footerrights">立即购买</view>
+    <view class="footerright" bindtap="chooseSize">加入购物车</view>
+    <view class="footerrights" bind:tap="chooseSizePurchase">立即购买</view>
+</view>
+<!-- 加入购物车 -->
+<view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+<view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+    <view class="head">
+        <view class="imag-container">
+            <view>
+                <image src="{{url+'/upload/'+goodsInfo.bigpic}}" class="imag" />
+            </view>
+            <view class="rimag-container">
+                <text class="rimag-text">{{goodsInfo.supp_gd_brand}}</text>
+                <font-icon name="guanbi" size="40" color="#8d8d8d" bind:tap="hideModal" />
+                <view style="font-size: 12pt;color:orange">￥{{goodsInfo.saleprice}}</view>
+            </view>
+        </view>
+        <view class="goods-type">
+            <view>
+                <view>食品口味：</view>
+                <view>
+                    <text class="btn">{{goodsInfo.supp_gd_taste}}</text>
+                </view>
+                <view>剩余保质期：</view>
+                <view>
+                    <text class="btn" style="width:168">6个月以上</text>
+                </view>
+            </view>
+        </view>
+        <view class="number">
+            <view>
+                <view>
+                    <view style="font-size:12pt;">购买数量:</view>
+                    <view style="font-size:10pt;color:rgb(200, 200, 200);">
+                        剩余{{goodsInfo.surplus-goodsInfo.salesVolume}}件
+                    </view>
+                </view>
+                <view>
+                    <counter maxNumber="{{goodsInfo.surplus-goodsInfo.salesVolume}}" bind:changeNumber="changeNumber" />
+                </view>
+            </view>
+        </view>
+        <view class="bigbtn" bind:tap="addToCart">确定</view>
+    </view>
+</view>
+<!-- 立即购买 -->
+<view class='maskLayer' wx:if="{{chooseSizePurchase}}" bindtap='hideModalPurchase'></view>
+<view class='choose' wx:if="{{chooseSizePurchase}}" animation='{{animationDataPurchase}}'>
+    <view class="head">
+        <view class="imag-container">
+            <view>
+                <image src="{{url+'/upload/'+goodsInfo.bigpic}}" class="imag" />
+            </view>
+            <view class="rimag-container">
+                <text class="rimag-text">{{goodsInfo.supp_gd_brand}}</text>
+                <font-icon name="guanbi" size="40" color="#8d8d8d" bind:tap="hideModalPurchase" />
+                <view style="font-size: 12pt;color:orange">￥{{goodsInfo.saleprice}}</view>
+            </view>
+        </view>
+        <view class="goods-type">
+            <view>
+                <view>食品口味：</view>
+                <view>
+                    <text class="btn">{{goodsInfo.supp_gd_taste}}</text>
+                </view>
+                <view>剩余保质期：</view>
+                <view>
+                    <text class="btn" style="width:168">6个月以上</text>
+                </view>
+            </view>
+        </view>
+        <view class="number">
+            <view>
+                <view>
+                    <view style="font-size:12pt;">购买数量:</view>
+                    <view style="font-size:10pt;color:rgb(200, 200, 200);">
+                        剩余{{goodsInfo.surplus-goodsInfo.salesVolume}}件
+                    </view>
+                </view>
+                <view>
+                    <counter maxNumber="{{goodsInfo.surplus-goodsInfo.salesVolume}}" bind:changeNumber="changeNumber" />
+                </view>
+            </view>
+        </view>
+        <view class="bigbtn">下一步</view>
+    </view>
 </view>

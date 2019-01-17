@@ -1,0 +1,124 @@
+<!-- pages/details/details.wxml -->
+<!-- 头图 -->
+<goods-banner imgUrls="{{imgUrls}}" />
+<!-- 商品名字 -->
+<view class="goodsname">
+    <view>
+        <view class="nameG">
+            <text>{{serviceInfo.sur_rules}}-{{serviceInfo.sur_name}}</text>
+            <view>￥{{serviceInfo.sur_price}}</view>
+        </view>
+        <view class="rightG">
+            <font-icon name="fenxiang" size="40" color="orange" />
+            <text>分享</text>
+        </view>
+    </view>
+</view>
+<!-- 担保 -->
+<view class="youzan">
+    <font-icon name="zan" size="30" color="green" />
+    <text style="margin-left:10rpx;color:green;">有赞担保</text>
+    <text style="margin-left:30rpx;">全程护航，请放心购买</text>
+</view>
+<!-- 店名 -->
+<view class="headerss">
+    <image src="{{url+'/upload/'+serviceInfo.store.store_avatar}}" alt="" />
+    <view class="dname">
+        <text>{{serviceInfo.store.store_name}}</text>
+        <text>官方</text>
+    </view>
+    <view class="jindians">进店</view>
+</view>
+<view class="danbao">
+    <view class="{{select == 0 ? 'border-bt' : ''}}" bind:tap="tabDetails">
+        <text>服务详情</text>
+    </view>
+    <view class="{{select == 1 ? 'border-bt' : ''}}" bind:tap="tabComment">
+        <text>用户评论</text>
+    </view>
+</view>
+<!-- 图片 -->
+<view class="details" wx:if="{{select == 0}}">
+    <view class="info-text">
+        <view>
+            <text class="line-limit-length">服务:{{serviceInfo.sur_name}}</text>
+            <text class="line-limit-length">类型:{{serviceInfo.sur_rules}}</text>
+            <text class="line-limit-length">耗时:{{serviceInfo.sur_time}}</text>
+        </view>
+        <view style="margin-top:20rpx;">
+            <text class="line-limit-length">体型:{{serviceInfo.sur_weight}}</text>
+            <text class="line-limit-length">价格:{{serviceInfo.sur_price}}</text>
+            <text class="line-limit-length">服务等级:{{serviceInfo.sur_level}}</text>
+        </view>
+    </view>
+    <view class="detailsImg">
+        <image class="detailsImg" src="{{url+'/upload/'+serviceInfo.store.store_avatar}}" />
+    </view>
+</view>
+<view class="details" wx:if="{{select == 1}}">321</view>
+<!-- footer -->
+<view class="footer">
+    <view class="footerleft">
+        <view>
+            <font-icon name="kefu" size="40" color="#8d8d8d" />
+            <view>客服</view>
+        </view>
+        <view>
+            <font-icon name="qicheqianlian-1-copy" size="40" color="#8d8d8d" />
+            <view>购物车</view>
+        </view>
+    </view>
+    <view class="footerright" bind:tap="chooseSize">加入购物车</view>
+    <view class="footerrights" bind:tap="chooseSizeBespoke">立即预约</view>
+</view>
+<!-- 加入购物车 -->
+<view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+<view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+    <view class="head">
+        <view class="imag-container">
+            <view>
+                <image src="{{url+'/upload/'+serviceInfo.cover_map}}" class="imag" />
+            </view>
+            <view class="rimag-container">
+                <text class="rimag-text">{{serviceInfo.sur_rules}}-{{serviceInfo.sur_name}}</text>
+                <font-icon name="guanbi" size="40" color="#8d8d8d" bind:tap="hideModal" />
+                <view style="font-size: 12pt;color:orange">￥{{serviceInfo.sur_price}}</view>
+            </view>
+        </view>
+        <view class="select-time">
+            <view>
+                <view>请选择预约时间:</view>
+            </view>
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeArr}}">
+                <view class="picker">{{timeArr[index]}}</view>
+            </picker>
+        </view>
+        <view class="bigbtn">确定</view>
+    </view>
+</view>
+
+<!-- 立即预约 -->
+<view class='maskLayer' wx:if="{{chooseSizeBespoke}}" bindtap='hideModalBespoke'></view>
+<view class='choose' wx:if="{{chooseSizeBespoke}}" animation='{{animationDataBespoke}}'>
+    <view class="head">
+        <view class="imag-container">
+            <view>
+                <image src="{{url+'/upload/'+serviceInfo.cover_map}}" class="imag" />
+            </view>
+            <view class="rimag-container">
+                <text class="rimag-text">{{serviceInfo.sur_rules}}-{{serviceInfo.sur_name}}</text>
+                <font-icon name="guanbi" size="40" color="#8d8d8d" bind:tap="hideModalBespoke" />
+                <view style="font-size: 12pt;color:orange">￥{{serviceInfo.sur_price}}</view>
+            </view>
+        </view>
+        <view class="select-time">
+            <view>
+                <view>请选择预约时间:</view>
+            </view>
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeArr}}">
+                <view class="picker">{{timeArr[index]}}</view>
+            </picker>
+        </view>
+        <view class="bigbtn">确定</view>
+    </view>
+</view>

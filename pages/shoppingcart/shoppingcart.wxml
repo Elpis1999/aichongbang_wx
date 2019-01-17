@@ -1,58 +1,49 @@
 <!-- pages/cart/cart.wxml -->
-<view class="cartName">
-    <view>
-        <view class="her">
-            <font-icon name="xuanzhong" size="40" color="orange" style="margin-right:20rpx;" />
-            <font-icon name="dianpu" size="40" color="#8d8d8d" />
-            <text>疯狂的动物宠物用品店</text>
-        </view>
-        <text class="bianji">编辑</text>
-    </view>
+<view class="bianji">
+    <text bind:tap="edit">{{bianji ? '完成' : '编辑'}}</text>
 </view>
-<view class="carttext">
-    <view class="carttxt">
-        <font-icon name="xuanzhong" size="40" color="orange" />
-        <view class="img">
-            <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" />
-        </view>
-        <view class="num">
-            <text>狗狗的零食1300g大礼包，泰迪宠物磨牙棒咬胶骨头幼犬牛肉火腿肠</text>
-            <text>牛肉，6月以上</text>
-            <view class="jiage">
-                <text>￥17.80</text>
-                <text>X1</text>
+<block wx:for="{{shoppingCart}}" wx:for-index="num" wx:for-item="store" wx:key="{{num}}">
+    <view class="cartName">
+        <view>
+            <view class="her">
+                <font-icon data-index="{{num}}" bind:tap="storeSwitch" name="{{storeGroup[num] == 1 ? 'xuanzhong':'yuanquan'}}" size="40" color="orange" style="margin-right:20rpx;" />
+                <font-icon name="dianpu" size="40" color="#8d8d8d" />
+                <text>{{store[0].store.store_name}}</text>
             </view>
         </view>
     </view>
-</view>
-<view class="carttext">
-    <view class="carttxt">
-        <font-icon name="xuanzhong" size="40" color="orange" />
-        <view class="img">
-            <image src="../../images/O1CN0116gkt12GjrgHixrDI_!!0-item_pic.jpg_430x430q90.jpg" />
-        </view>
-        <view class="num">
-            <text>狗狗的零食1300g大礼包，泰迪宠物磨牙棒咬胶骨头幼犬牛肉火腿肠</text>
-            <text>牛肉，6月以上</text>
-            <view class="jiage">
-                <text>￥17.80</text>
-                <text>X1</text>
+    <view class="carttext" wx:for="{{shoppingCart[num]}}">
+        <view class="carttxt">
+            <font-icon data-id="{{item._id}}" bind:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
+            <view class="img">
+                <image src="{{url+'/upload/'+item.bigpic}}" />
+            </view>
+            <view class="num">
+                <text>{{item.supp_gd_brand}}</text>
+                <text>{{item.supp_gd_material}}，6个月以上</text>
+                <view class="jiage">
+                    <text wx:if="{{!bianji}}">￥{{item.subtotal}}</text>
+                    <text wx:if="{{!bianji}}">X{{item.purchaseQuantity}}</text>
+                    <shoppingcart-counter data-id="{{item._id}}" maxNumber="{{100}}" num="{{item.purchaseQuantity}}" bind:changeNumber="changeNumber" wx:if="{{bianji}}" />
+                </view>
+                <view class="del" data-id="{{item._id}}" wx:if="{{bianji}}" bind:tap="delItem">删除</view>
             </view>
         </view>
     </view>
-</view>
+</block>
 <!-- footer -->
 <view class="footer">
     <view class="footerleft">
-        <font-icon name="xuanzhong" size="40" color="orange" style="margin-left:20rpx;" />
+        <font-icon name="{{allElection ? 'xuanzhong':'yuanquan'}}" size="40" color="orange" style="margin-left:20rpx;" bind:tap="allSwitch" />
         <text>全选</text>
     </view>
     <view class="footerright">
-        <view class="nums">
+        <view class="nums" wx:if="{{!bianji}}">
             <text>合计:</text>
             <text style="color:orange">￥9.90</text>
             <view>不含运费</view>
         </view>
-        <view class="delete">结算</view>
+        <view class="delete" bind:tap="delete" wx:if="{{bianji}}">删除</view>
+        <view class="delete" bind:tap="settlement" wx:if="{{!bianji}}">结算</view>
     </view>
 </view>

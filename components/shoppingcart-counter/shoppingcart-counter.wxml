@@ -1,0 +1,6 @@
+<!-- components/counter/counter.wxml -->
+<view class="btns">
+    <button bind:tap="reduce" disabled="{{number === 1 ? true : false}}">-</button>
+    <text>{{number}}</text>
+    <button bind:tap="plus" disabled="{{number == maxNumber ? true : false}}">+</button>
+</view>

@@ -9,14 +9,15 @@ Page({
    */
   data: {
     url,
-    goodsInfo: {},
+    serviceInfo: {},
     imgUrls: [],
     select: 0,
     chooseSize: false, //弹出层
-    chooseSizePurchase: false,
+    chooseSizeBespoke: false, //弹出层
     animationData: {},
-    animationDataPurchase: {},
-    number: 1
+    animationDataBespoke: {},
+    timeArr: [],
+    index: 0
   },
 
   /**
@@ -25,20 +26,22 @@ Page({
   onLoad: function (options) {
     wx.request({
       method: "get",
-      url: url + "/wxgoods/goodsById",
+      url: url + "/wxgoods/serviceById",
       data: {
-        id: options.goodsId
+        id: options.serviceId
       },
       success: ({
         data
       }) => {
         let arr = [];
-        arr.push(`${url}/upload/${data.bigpic}`);
-        arr.push(`${url}/upload/${data.smallpic}`);
-        console.log(data);
+        arr.push(`${url}/upload/${data.cover_map}`);
+        let timeArr = [];
+        timeArr.push(data.sur_date);
+        timeArr.push("12:00-13:00");
         this.setData({
-          goodsInfo: data,
-          imgUrls: arr
+          serviceInfo: data,
+          imgUrls: arr,
+          timeArr
         });
       }
     });
@@ -92,6 +95,13 @@ Page({
   onShareAppMessage: function () {
 
   },
+  bindPickerChange(e) {
+    console.log(e)
+    let index = e.detail.value;
+    this.setData({
+      index
+    });
+  },
   tabDetails() {
     this.setData({
       select: 0
@@ -100,30 +110,6 @@ Page({
   tabComment() {
     this.setData({
       select: 1
-    });
-  },
-  addToCart() {
-    let openId = wx.getStorageSync('openId');
-    let goodsInfo = { ...this.data.goodsInfo
-    };
-    goodsInfo.purchaseQuantity = this.data.number;
-    goodsInfo.subtotal = this.data.number * this.data.goodsInfo.saleprice;
-    wx.request({
-      method: "post",
-      url: url + "/wxgoods/addGoods",
-      data: {
-        openId,
-        goods: goodsInfo
-      },
-      success:()=>{
-        this.hideModal();
-      }
-    });
-  
-  },
-  toShoppingCart() {
-    wx.switchTab({
-      url: "../../pages/shoppingcart/shoppingcart"
     });
   },
   //加入购物车
@@ -175,16 +161,10 @@ Page({
       })
     }, 200)
   },
-  changeNumber(e) {
-    this.setData({
-      number: e.detail
-    }, function () {
-      console.log(this.data.number);
-    });
-  },
 
-  //立即购买
-  chooseSizePurchase(e) {
+
+  //立即预约
+  chooseSizeBespoke(e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例
@@ -201,19 +181,19 @@ Page({
     // 用setData改变当前动画
     that.setData({
       // 通过export()方法导出数据
-      animationDataPurchase: animation.export(),
+      animationDataBespoke: animation.export(),
       // 改变view里面的Wx：if
-      chooseSizePurchase: true
+      chooseSizeBespoke: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
     setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
-        animationDataPurchase: animation.export()
+        animationDataBespoke: animation.export()
       })
     }, 200)
   },
-  hideModalPurchase(e) {
+  hideModalBespoke(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -222,14 +202,14 @@ Page({
     that.animation = animation
     animation.translateY(200).step()
     that.setData({
-      animationDataPurchase: animation.export()
+      animationDataBespoke: animation.export()
     })
     setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
-        animationDataPurchase: animation.export(),
-        chooseSizePurchase: false
+        animationDataBespoke: animation.export(),
+        chooseSizeBespoke: false
       })
     }, 200)
-  },
+  }
 })

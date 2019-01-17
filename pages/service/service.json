@@ -2,5 +2,5 @@
   "usingComponents": {
     "serve-item": "../../components/serve-item/serve-item"
   },
-  "navigationBarTitleText": "商品"
+  "navigationBarTitleText": "服务"
 }

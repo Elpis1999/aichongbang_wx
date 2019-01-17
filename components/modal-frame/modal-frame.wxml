@@ -1,0 +1,2 @@
+<!--components/modal-frame/modal-frame.wxml-->
+<view class="modal-frame" wx:if="{{status}}"></view>

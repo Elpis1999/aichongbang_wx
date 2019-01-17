@@ -1,5 +1,5 @@
 <!-- components/goods-item/goods-item.wxml -->
-<view class="service-item">
+<view class="service-item" bind:tap="toDetails" data-serviceid="{{info._id}}">
     <view>
         <image src="{{url+'/upload/'+info.cover_map}}" />
     </view>

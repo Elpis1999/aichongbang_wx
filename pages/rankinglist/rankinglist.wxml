@@ -7,7 +7,15 @@
         最新排行
     </view>
 </view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
-    <swiper-item></swiper-item>
-    <swiper-item></swiper-item>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{131 * hotGoods.length}}px" bindchange="bindChange">
+    <swiper-item>
+        <scroll-view style="height:100%;">
+            <ranking-item wx:for="{{hotGoods}}" info="{{item}}" wx:key="{{item._id}}" />
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+        <scroll-view style="height:100%;">
+            <ranking-item wx:for="{{newGoods}}" info="{{item}}" wx:key="{{item._id}}" />
+        </scroll-view>
+    </swiper-item>
 </swiper>

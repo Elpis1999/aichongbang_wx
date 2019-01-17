@@ -21,6 +21,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    toDetails(event) {
+      let id = event.currentTarget.dataset.serviceid;
+      wx.navigateTo({
+        url: "../../pages/servicedetails/servicedetails?" + "serviceId=" + id
+      });
+    }
   }
 })

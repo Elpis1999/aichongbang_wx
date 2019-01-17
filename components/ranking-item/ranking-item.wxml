@@ -1,0 +1,16 @@
+<!-- components/ranking-item/ranking-item.wxml -->
+<view>
+    <view class="item-comtent" bind:tap="toDetails" data-goodsid="{{info._id}}">
+        <view class="img" style="margin-right:15rpx;">
+            <image class="img" src="{{url+'/upload/'+info.bigpic}}" />
+        </view>
+        <view>
+            <view class="line-limit-length">{{info.supp_gd_brand}}</view>
+            <view class="info">
+                <text>上架时间：{{info.time}}</text>
+                <text>已售：{{info.salesVolume}}</text>
+            </view>
+            <view style="color:orange">￥{{info.saleprice}}</view>
+        </view>
+    </view>
+</view>

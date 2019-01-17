@@ -1,6 +1,7 @@
 /* pages/service/service.wxss */
-page,.scroll-view{
+page,.scroll-view,.service-container{
     height: 100%;
+    background-color: rgb(245, 245, 245);
 }
 .service-container {
     padding: 0 30rpx 50rpx 30rpx;
