@@ -74,8 +74,8 @@
             <font-icon name="kefu" size="40" color="#8d8d8d" />
             <view>客服</view>
         </view>
-        <view>
-            <font-icon name="qicheqianlian-1-copy" size="40" color="#8d8d8d" bind:tap="toShoppingCart" />
+        <view bind:tap="toShoppingCart">
+            <font-icon name="qicheqianlian-1-copy" size="40" color="#8d8d8d" />
             <view>购物车</view>
         </view>
     </view>
@@ -163,6 +163,6 @@
                 </view>
             </view>
         </view>
-        <view class="bigbtn">下一步</view>
+        <view class="bigbtn" bind:tap="directPurchase">下一步</view>
     </view>
 </view>

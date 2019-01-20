@@ -1,0 +1,71 @@
+/* pages/newaddress/newaddress.wxss */
+page {
+    background-color: rgb(245, 245, 245);
+
+}
+
+.item {
+    margin-left: 30rpx;
+    display: flex;
+    font-size: 12pt;
+    border-bottom: 1rpx solid rgb(233, 233, 233);
+    padding: 15rpx;
+}
+
+.input {
+    padding: 0 50rpx 0 100rpx;
+}
+
+
+.content {
+    background-color: white;
+    margin-top: 30rpx;
+}
+
+
+.picker-view {
+    width: 100%;
+    display: flex;
+    z-index: 12;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0rpx;
+    left: 0rpx;
+    height: 40vh;
+}
+
+.picker-item {
+    line-height: 70rpx;
+    margin-left: 5rpx;
+    margin-right: 5rpx;
+    text-align: center;
+}
+
+.maskLayer {
+    width: 100%;
+    height: 780rpx;
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    z-index: 8;
+}
+
+.btn {
+    width: 382rpx;
+    height: 100rpx;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    line-height: 100rpx;
+    border-radius: 10rpx;
+}
+
+.btn-com {
+    display: flex;
+    justify-content: center;
+    margin-top: 50rpx;
+}

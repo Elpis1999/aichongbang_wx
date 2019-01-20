@@ -2,6 +2,9 @@
 let {
   url
 } = require("../../config/index");
+let {
+  formatTime
+} = require("../../utils/util");
 Page({
 
   /**
@@ -17,6 +20,7 @@ Page({
     animationData: {},
     animationDataBespoke: {},
     timeArr: [],
+    timeAry: [],
     index: 0
   },
 
@@ -24,29 +28,83 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.show(options);
+  },
+  show(options) {
+    let openId = wx.getStorageSync('openId');
     wx.request({
       method: "get",
-      url: url + "/wxgoods/serviceById",
-      data: {
-        id: options.serviceId
-      },
+      url: url + '/wxgoods/searchAllPetMaster',
       success: ({
         data
       }) => {
-        let arr = [];
-        arr.push(`${url}/upload/${data.cover_map}`);
-        let timeArr = [];
-        timeArr.push(data.sur_date);
-        timeArr.push("12:00-13:00");
-        this.setData({
-          serviceInfo: data,
-          imgUrls: arr,
-          timeArr
+        let petMasters = data;
+        wx.request({
+          method: "get",
+          url: url + "/wxgoods/serviceById",
+          data: {
+            id: options.serviceId
+          },
+          success: (res) => {
+            console.log(res.data, "ahahahaha");
+            let data = res.data;
+            let arr = [];
+            arr.push(`${url}/upload/${data.cover_map}`);
+            let timeArr = [];
+            let timeAry = [];
+            let date = new Date();
+            let year = date.getFullYear().toString();
+            let month = (date.getMonth() + 1).toString();
+            let day = date.getDate().toString();
+            let hours = date.getHours().toString();
+            let minutes = date.getMinutes().toString();
+            minutes = (hours * 60) + minutes;
+
+            console.log("小时", hours, minutes);
+
+            for (let k = 0; k < data.sur_date.length; k++) {
+              for (let i = 0; i < petMasters.length; i++) {
+                for (let j = 0; j < petMasters[i].reservationService.length; j++) {
+                  if (data.sur_date[k] == petMasters[i].reservationService[j].sur_date && data._id == petMasters[i].reservationService[j]._id) {
+                    data.sur_date.splice(k, 1);
+                  }
+                }
+
+              }
+            }
+
+            for (let i = 0; i < data.sur_date.length; i++) {
+              let tiem = data.sur_date[i].split("-");
+              let timeHours = tiem[3].split(":")[0];
+              let tiemMinutes = tiem[3].split(":")[1];
+              tiemMinutes = (timeHours * 60) + tiemMinutes;
+              console.log(minutes, tiemMinutes);
+              console.log(tiem);
+              if (tiem[0] == year && tiem[1] == month && tiem[2] == day && hours < timeHours) {
+                timeArr.push("今天" + tiem[3] + "-" + tiem[4]);
+                timeAry.push(data.sur_date[i]);
+              } else if (tiem[0] == year && tiem[1] == month && tiem[2] == parseInt(day) + 1 && hours < timeHours) {
+                timeArr.push("明天" + tiem[3] + "-" + tiem[4]);
+                timeAry.push(data.sur_date[i]);
+              } else if (tiem[0] == year && tiem[1] == month && tiem[2] == parseInt(day) + 2 && hours < timeHours) {
+                timeArr.push("后天" + tiem[3] + "-" + tiem[4]);
+                timeAry.push(data.sur_date[i]);
+              } else if (tiem[0] == year && tiem[1] == month && tiem[2] <= day && hours < timeHours) {
+                timeArr.push(data.sur_date[i]);
+                timeAry.push(data.sur_date[i]);
+              }
+            }
+            this.setData({
+              serviceInfo: data,
+              imgUrls: arr,
+              timeArr,
+              timeAry
+            });
+          }
         });
       }
     });
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -211,5 +269,54 @@ Page({
         chooseSizeBespoke: false
       })
     }, 200)
-  }
+  },
+  addToCart() {
+    let openId = wx.getStorageSync('openId');
+    let {
+      serviceInfo,
+      index,
+      timeAry
+    } = this.data;
+    serviceInfo.sur_date = timeAry[index];
+    console.log(serviceInfo.sur_date, "lolloolloo");
+    if (serviceInfo.sur_date) {
+      wx.request({
+        method: "post",
+        url: url + '/wxgoods/addService',
+        data: {
+          openId,
+          service: serviceInfo
+        },
+        success: ({
+          data
+        }) => {
+          if (data.status === 0) {
+            wx.showToast({
+              title: '添加失败购物车中已存在',
+              duration: 2000
+            })
+            this.hideModal();
+          } else {
+            wx.showToast({
+              title: '已添加至购物车',
+              icon: 'success',
+              duration: 2000
+            })
+            this.hideModal();
+          }
+        }
+      });
+    }else{
+      wx.showToast({
+        title: '请选择预约时间',
+        duration: 2000
+      })
+    }
+
+  },
+  toShoppingCart() {
+    wx.switchTab({
+      url: "../../pages/shoppingcart/shoppingcart"
+    });
+  },
 })

@@ -9,6 +9,11 @@
     width: 33.33%;
     text-align: center;
     line-height: 62rpx;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    outline: none; 
 }
 
 .btns text {

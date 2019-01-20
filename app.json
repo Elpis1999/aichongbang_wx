@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/addresslist/addresslist",
+    "pages/newaddress/newaddress",
     "pages/goods/goods",
     "pages/shoppingcart/shoppingcart",
     "pages/goodsdetails/goodsdetails",
@@ -9,14 +11,14 @@
     "pages/service/service",
     "pages/rankinglist/rankinglist",
     "pages/servicedetails/servicedetails",
-    "components/counter/counter"
+    "components/counter/counter",
+    "pages/order/order"
   ],
   "tabBar": {
     "selectedColor": "#FFA500",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/shouye.png",

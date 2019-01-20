@@ -23,6 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.goodsId);
     wx.request({
       method: "get",
       url: url + "/wxgoods/goodsById",
@@ -107,7 +108,7 @@ Page({
     let goodsInfo = { ...this.data.goodsInfo
     };
     goodsInfo.purchaseQuantity = this.data.number;
-    goodsInfo.subtotal = this.data.number * this.data.goodsInfo.saleprice;
+    goodsInfo.subtotal = (this.data.number * this.data.goodsInfo.saleprice).toFixed(2);
     wx.request({
       method: "post",
       url: url + "/wxgoods/addGoods",
@@ -115,15 +116,32 @@ Page({
         openId,
         goods: goodsInfo
       },
-      success:()=>{
+      success: () => {
+        wx.showToast({
+          title: '已添加至购物车',
+          icon: 'success',
+          duration: 2000
+        })
         this.hideModal();
       }
     });
-  
   },
   toShoppingCart() {
     wx.switchTab({
       url: "../../pages/shoppingcart/shoppingcart"
+    });
+  },
+  //直接购买
+  directPurchase() {
+    let goodsInfo = { ...this.data.goodsInfo
+    };
+    let number = this.data.number;
+    console.log(goodsInfo);
+    goodsInfo.purchaseQuantity = number;
+    goodsInfo.subtotal = (goodsInfo.saleprice * number).toFixed(2);
+    let newShoppingCart = [[goodsInfo]];
+    wx.navigateTo({
+      url: "../order/order" + "?shoppingCart=" + JSON.stringify(newShoppingCart)
     });
   },
   //加入购物车

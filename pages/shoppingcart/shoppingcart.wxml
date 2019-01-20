@@ -13,8 +13,26 @@
         </view>
     </view>
     <view class="carttext" wx:for="{{shoppingCart[num]}}">
-        <view class="carttxt">
-            <font-icon data-id="{{item._id}}" bind:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
+        <view class="carttxt" wx:if="{{item.class==2}}">
+            <font-icon data-time="{{item.sur_date}}" data-index="{{num}}" bind:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
+            <view class="img">
+                <image src="{{url+'/upload/'+item.cover_map}}" />
+            </view>
+            <view class="num">
+                <text>{{item.sur_rules}}-{{item.sur_name}}</text>
+                <text>{{item.sur_time}}</text>
+                <view class="jiage">
+                    <text wx:if="{{!bianji}}">￥{{item.sur_price}}</text>
+                    <text wx:if="{{!bianji}}">{{item.sur_date}}</text>
+                </view>
+                <view class="del" data-time="{{item.sur_date}}" wx:if="{{bianji}}" bind:tap="delItemService">
+                    删除
+                </view>
+            </view>
+
+        </view>
+        <view class="carttxt" wx:if="{{item.class!=2}}">
+            <font-icon data-id="{{item._id}}" data-index="{{num}}" bind:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
             <view class="img">
                 <image src="{{url+'/upload/'+item.bigpic}}" />
             </view>
@@ -26,7 +44,9 @@
                     <text wx:if="{{!bianji}}">X{{item.purchaseQuantity}}</text>
                     <shoppingcart-counter data-id="{{item._id}}" maxNumber="{{100}}" num="{{item.purchaseQuantity}}" bind:changeNumber="changeNumber" wx:if="{{bianji}}" />
                 </view>
-                <view class="del" data-id="{{item._id}}" wx:if="{{bianji}}" bind:tap="delItem">删除</view>
+                <view class="del" data-id="{{item._id}}" wx:if="{{bianji}}" bind:tap="delItem">
+                    删除
+                </view>
             </view>
         </view>
     </view>
@@ -40,7 +60,7 @@
     <view class="footerright">
         <view class="nums" wx:if="{{!bianji}}">
             <text>合计:</text>
-            <text style="color:orange">￥9.90</text>
+            <text style="color:orange">￥{{money}}</text>
             <view>不含运费</view>
         </view>
         <view class="delete" bind:tap="delete" wx:if="{{bianji}}">删除</view>

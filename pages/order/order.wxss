@@ -1,0 +1,120 @@
+/* pages/order/order.wxss */
+page {
+    background-color: rgb(250, 250, 250);
+}
+
+.receiving-address {
+    padding: 30rpx 30rpx 20rpx 25rpx;
+    border-bottom: 1px dashed rgb(233, 233, 233);
+    background-color: white;
+}
+
+.receiving-address>view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.receiving-address>view>view {
+    display: flex;
+    align-items: center;
+}
+
+.item>view {
+    display: flex;
+}
+
+.image,
+.img {
+    width: 190rpx;
+    height: 190rpx;
+}
+
+.item {
+    display: flex;
+    margin-top: 20rpx;
+    padding: 0 0 10rpx 32rpx;
+}
+
+.store-item {
+    background-color: rgb(250, 250, 250);
+}
+
+.text {
+    margin-left: 20rpx;
+    display: flex;
+}
+
+.text-zhong {
+    width: 353rpx;
+
+}
+
+.text-r {
+    width: 128rpx;
+}
+
+.text-r>view {
+    text-align: right;
+}
+
+.s-font {
+    font-size: 10pt;
+    color: rgb(177, 175, 175);
+}
+
+.m-font {
+    font-size: 12pt;
+}
+
+.line-limit-length {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.delivery {
+    padding: 30rpx 0 0 32rpx;
+    margin-top: 20rpx;
+    background-color: white;
+}
+
+.delivery>view {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32rpx 30rpx 0;
+    font-size: 12pt;
+    color: rgb(177, 175, 175);
+}
+
+.xiaoji {
+    background-color: white;
+    padding: 32rpx 30rpx;
+    font-size: 12pt;
+    text-align: right;
+}
+
+.footer {
+    width: 100%;
+    height: 104rpx;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-top: 1rpx solid rgb(233, 233, 233);
+}
+
+.footer>view:first-child {
+    line-height: 104rpx;
+    text-align: right;
+    flex: 1;
+}
+
+.commit-btn {
+    width: 230rpx;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    line-height: 104rpx;
+}

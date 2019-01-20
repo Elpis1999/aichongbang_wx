@@ -1,0 +1,18 @@
+<!-- pages/addresslist/addresslist.wxml -->
+<view wx:for="{{location}}" class="address-item">
+    <view style="display:flex;">
+        <view style="display:flex;align-items: center;margin-right:20rpx;">
+            <font-icon data-index="{{index}}" name="{{ selectIndex == index ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" bind:tap="select" />
+        </view>
+        <view>
+            <view style="font-size:12pt;">{{item.name}}，{{item.phone}}</view>
+            <view style="font-size:10pt;color:#8d8d8d;margin-top:15rpx;">
+                收货地址：{{item.region}}{{item.dAddress}}
+            </view>
+        </view>
+    </view>
+    <view>
+        <font-icon name="sc" size="30" color="#8d8d8d" data-index="{{index}}" bindtap="removeAddress" />
+    </view>
+</view>
+<view class="btn" bind:tap="toAddAddress">新增收货地址</view>

@@ -1,0 +1,94 @@
+<!-- pages/order/order.wxml -->
+<view class="receiving-address">
+    <view bind:tap="newAddress" wx:if="{{!isAddress}}">
+        <view>
+            <font-icon size="60" color="#00BFFF" name="add" />
+            <text style="font-size:12pt;margin-left:10rpx;">选择收货地址</text>
+        </view>
+        <font-icon color="#8d8d8d" size="30" name="xiayibu" />
+    </view>
+    <view bind:tap="toAddressList" wx:if="{{isAddress}}">
+        <view style="display:block;width:530rpx;">
+            <view style="display:flex;justify-content: space-between;">
+                <view class="line-limit-length">
+                    <font-icon name="weizhi" size="30" color="#8d8d8d" />
+                    <text style="font-size:12pt;">收货人：{{address.name}}</text>
+                </view>
+                <text style="font-size:12pt;">{{address.phone}}</text>
+            </view>
+            <view style="color:#8d8d8d;font-size:10pt;margin-top:15rpx;" class="line-limit-length">
+                收货地址：{{address.region}}{{address.dAddress}}
+            </view>
+        </view>
+        <view>
+            <font-icon color="#8d8d8d" size="30" name="xiayibu" />
+        </view>
+    </view>
+</view>
+<view class="store-item" wx:for="{{commodity}}" wx:for-index="num" wx:for-item="store" wx:key="{{num}}">
+    <view style="padding-top:20rpx; background-color:#FFFF;padding-left:32rpx;padding-bottom:20rpx;">
+        <font-icon name="dianpu" size="40" color="#8d8d8d" />
+        <text class="m-font" style="margin-left:10rpx;">{{store[0].store.store_name}}</text>
+    </view>
+    <view class="item" wx:for="{{commodity[num]}}">
+        <view wx:if="{{item.class!=2}}">
+            <view class="image">
+                <image class="img" src="{{url+'/upload/'+item.bigpic}}" />
+            </view>
+            <view class="text">
+                <view class="text-zhong">
+                    <view class="m-font line-limit-length">{{item.supp_gd_brand}}</view>
+                    <view class="m-font line-limit-length">{{item.supp_gd_material}}，6个月以上</view>
+                    <view>
+                        <text class="s-font">{{item.supp_gd_taste}}，</text>
+                        <text class="s-font">{{item.supp_gd_exc}}</text>
+                    </view>
+                </view>
+                <view class="text-r">
+                    <view class="m-font">￥{{item.subtotal}}</view>
+                    <view class="s-font">X{{item.purchaseQuantity}}</view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{item.class==2}}">
+            <view class="image">
+                <image class="img" src="{{url+'/upload/'+item.cover_map}}" />
+            </view>
+            <view class="text">
+                <view class="text-zhong">
+                    <view class="m-font line-limit-length">
+                        {{item.sur_rules}}-{{item.sur_name}}
+                    </view>
+                    <view class="m-font line-limit-length">{{item.sur_weight}}</view>
+                    <view>
+                        <text class="s-font">{{item.sur_date}}</text>
+                    </view>
+                </view>
+                <view class="text-r">
+                    <view class="m-font">￥{{item.sur_price}}</view>
+                    <view class="s-font">{{item.sur_time}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="xiaoji">
+        <text style="font-size:10pt;color:rgb(200,200,200);margin-right:15rpx;">
+            共{{commodity[num].length}}件商品
+        </text>
+        <text>小计：</text>
+        <text style="color:orange">￥{{price[num]}}</text>
+    </view>
+</view>
+<view class="delivery">
+    <view>
+        <text>配送方式</text>
+        <text>普通快递</text>
+    </view>
+</view>
+<view class="footer">
+    <view>
+        <text style="font-size:12pt;font-weight:bold;">合计：</text>
+        <text style="font-size:12pt;color:orange;margin-right:15rpx;">￥{{total}}</text>
+    </view>
+    <view class="commit-btn" bind:tap="placeOrder">提交订单</view>
+</view>
