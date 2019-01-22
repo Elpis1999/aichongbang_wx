@@ -119,6 +119,6 @@
                 <view class="picker">{{timeArr[index]}}</view>
             </picker>
         </view>
-        <view class="bigbtn">下一步</view>
+        <view class="bigbtn" bindtap="immediateAppointment">下一步</view>
     </view>
 </view>

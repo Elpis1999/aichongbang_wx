@@ -1,0 +1,22 @@
+<!-- pages/writecomments/writecomments.wxml -->
+<view class="header">
+    <view class="headPhoto">
+        <image src="{{user.avatarUrl}}" class="headPhoto" />
+    </view>
+    <text style="margin-left:15rpx;">{{user.nickName}}</text>
+</view>
+<view class="text">
+    <textarea class="textarea" placeholder="宝贝满足你的期待吗?说说你的使用心得,分享给买的他们吧" bindinput="input"></textarea>
+    <view class="imags-container">
+        <view class="img-item" wx:for="{{images}}">
+            <image src="{{url+'/upload/'+item}}" />
+        </view>
+        <view class="addPhoto" bind:tap="addPicture">
+            <font-icon name="xiangji" size="40" color="#8d8d8d" />
+            <text style="font-size:10pt;color:#8d8d8d;display:block;">添加图片</text>
+        </view>
+    </view>
+</view>
+<view>
+    <view class="btn" bind:tap="comment">发表评论</view>
+</view>

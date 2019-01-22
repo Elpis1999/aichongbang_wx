@@ -73,5 +73,20 @@ Page({
     wx.switchTab({
       url: "../shoppingcart/shoppingcart"
     });
+  },
+  toAllOrder() {
+    wx.navigateTo({
+      url: "../allorder/allorder"
+    });
+  },
+  toUnfinishedOrder() {
+    wx.navigateTo({
+      url: "../unfinishedorder/unfinishedorder"
+    });
+  },
+  toFinishedOrder() {
+    wx.navigateTo({
+      url: "../finishedorder/finishedorder"
+    });
   }
 })

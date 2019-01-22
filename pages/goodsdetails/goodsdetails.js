@@ -16,14 +16,14 @@ Page({
     chooseSizePurchase: false,
     animationData: {},
     animationDataPurchase: {},
-    number: 1
+    number: 1,
+    commodityReview: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.goodsId);
     wx.request({
       method: "get",
       url: url + "/wxgoods/goodsById",
@@ -40,6 +40,25 @@ Page({
         this.setData({
           goodsInfo: data,
           imgUrls: arr
+        });
+      }
+    });
+    this.loadComment(options.goodsId);
+  },
+
+  loadComment(goodsId) {
+    wx.request({
+      method: "get",
+      url: url + "/wxgoods/goodsComment",
+      data: {
+        type: "goods",
+        value: goodsId
+      },
+      success: ({
+        data
+      }) => {
+        this.setData({
+          commodityReview: data
         });
       }
     });
@@ -136,10 +155,11 @@ Page({
     let goodsInfo = { ...this.data.goodsInfo
     };
     let number = this.data.number;
-    console.log(goodsInfo);
     goodsInfo.purchaseQuantity = number;
     goodsInfo.subtotal = (goodsInfo.saleprice * number).toFixed(2);
-    let newShoppingCart = [[goodsInfo]];
+    let newShoppingCart = [
+      [goodsInfo]
+    ];
     wx.navigateTo({
       url: "../order/order" + "?shoppingCart=" + JSON.stringify(newShoppingCart)
     });

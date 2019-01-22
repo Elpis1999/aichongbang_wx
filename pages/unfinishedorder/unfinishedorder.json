@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "font-icon": "../../components/font-icon/font-icon"
+  }
+}

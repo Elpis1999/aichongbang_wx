@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "font-icon": "../../components/font-icon/font-icon"
+  },
+  "navigationBarTitleText": "全部订单"
+}

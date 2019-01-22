@@ -46,7 +46,6 @@ Page({
             id: options.serviceId
           },
           success: (res) => {
-            console.log(res.data, "ahahahaha");
             let data = res.data;
             let arr = [];
             arr.push(`${url}/upload/${data.cover_map}`);
@@ -60,8 +59,6 @@ Page({
             let minutes = date.getMinutes().toString();
             minutes = (hours * 60) + minutes;
 
-            console.log("小时", hours, minutes);
-
             for (let k = 0; k < data.sur_date.length; k++) {
               for (let i = 0; i < petMasters.length; i++) {
                 for (let j = 0; j < petMasters[i].reservationService.length; j++) {
@@ -69,7 +66,6 @@ Page({
                     data.sur_date.splice(k, 1);
                   }
                 }
-
               }
             }
 
@@ -78,9 +74,9 @@ Page({
               let timeHours = tiem[3].split(":")[0];
               let tiemMinutes = tiem[3].split(":")[1];
               tiemMinutes = (timeHours * 60) + tiemMinutes;
-              console.log(minutes, tiemMinutes);
-              console.log(tiem);
-              if (tiem[0] == year && tiem[1] == month && tiem[2] == day && hours < timeHours) {
+              console.log(parseInt(hours) < parseInt(timeHours));
+              console.log(hours, timeHours);
+              if (tiem[0] == year && tiem[1] == month && tiem[2] == day && parseInt(hours) < parseInt(timeHours)) {
                 timeArr.push("今天" + tiem[3] + "-" + tiem[4]);
                 timeAry.push(data.sur_date[i]);
               } else if (tiem[0] == year && tiem[1] == month && tiem[2] == parseInt(day) + 1 && hours < timeHours) {
@@ -94,6 +90,8 @@ Page({
                 timeAry.push(data.sur_date[i]);
               }
             }
+            console.log(timeArr, timeAry, 'arr');
+
             this.setData({
               serviceInfo: data,
               imgUrls: arr,
@@ -278,7 +276,6 @@ Page({
       timeAry
     } = this.data;
     serviceInfo.sur_date = timeAry[index];
-    console.log(serviceInfo.sur_date, "lolloolloo");
     if (serviceInfo.sur_date) {
       wx.request({
         method: "post",
@@ -306,17 +303,38 @@ Page({
           }
         }
       });
-    }else{
+    } else {
       wx.showToast({
         title: '请选择预约时间',
         duration: 2000
       })
     }
-
   },
   toShoppingCart() {
     wx.switchTab({
       url: "../../pages/shoppingcart/shoppingcart"
     });
   },
+  immediateAppointment() {
+    let {
+      serviceInfo,
+      index,
+      timeAry
+    } = this.data;
+    serviceInfo.sur_date = timeAry[index];
+    if (serviceInfo.sur_date) {
+      serviceInfo.state = '未完成';
+      let newShoppingCart = [
+        [serviceInfo]
+      ];
+      wx.navigateTo({
+        url: "../order/order" + "?shoppingCart=" + JSON.stringify(newShoppingCart)
+      });
+    } else {
+      wx.showToast({
+        title: '请选择预约时间',
+        duration: 2000
+      })
+    }
+  }
 })

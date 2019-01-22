@@ -66,7 +66,20 @@
         <image class="detailsImg" src="{{url+'/upload/'+goodsInfo.smallpic}}" />
     </view>
 </view>
-<view class="details" wx:if="{{select == 1}}">321</view>
+<view class="details" wx:if="{{select == 1}}">
+    <view class="comment-item" wx:for="{{commodityReview}}">
+        <view class="comment-content">
+            <view>
+                <image src="" />
+                <text></text>
+            </view>
+            <view></view>
+            <view>
+                <image src="" />
+            </view>
+        </view>
+    </view>
+</view>
 <!-- footer -->
 <view class="footer">
     <view class="footerleft">

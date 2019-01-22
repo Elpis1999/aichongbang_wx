@@ -36,7 +36,6 @@ Page({
       success: ({
         data
       }) => {
-        console.log(data, "dadadada");
         let reservationService = data.reservationService;
         data.shoppingCart = [...data.shoppingCart, ...reservationService];
         //数组去重
@@ -62,15 +61,12 @@ Page({
           storeGroup.push(1);
         }
 
-        console.log(reservationService, "reservationService");
-
         this.setData({
           shoppingCart: arr,
           storeGroup,
           reservationService
         }, function () {
           this.calculationMoney();
-          console.log(this.data.shoppingCart, "48489484");
         });
       }
     });
@@ -104,12 +100,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("hahhahahhahaha");
     let refresh = wx.getStorageSync("refresh");
-    console.log(refresh);
     if (refresh != 0) {
       this.show();
-      console.log("show");
     }
     wx.setStorage({
       key: 'refresh',
@@ -174,9 +167,7 @@ Page({
       let time = e.currentTarget.dataset.time;
       for (let i = 0; i < shoppingCart.length; i++) {
         for (let j = 0; j < shoppingCart[i].length; j++) {
-          console.log("item", shoppingCart[i][j]);
           if (shoppingCart[i][j].sur_date) {
-            console.log(shoppingCart[i][j].sur_date, time);
             if (time == shoppingCart[i][j].sur_date) {
               shoppingCart[i][j].choice = shoppingCart[i][j].choice == 0 ? 1 : 0;
               this.notFullyElected();
@@ -279,7 +270,6 @@ Page({
     if (bl) {
       storeGroup[index] = 1;
     }
-    console.log(storeGroup);
     this.setData({
       storeGroup
     });
@@ -339,7 +329,7 @@ Page({
         newShoppingCart.splice(i, 1);
       }
     }
-    console.log("newShoppingCart",newShoppingCart);
+
     wx.navigateTo({
       url: "../order/order" + "?shoppingCart=" + JSON.stringify(newShoppingCart)
     });

@@ -12,13 +12,18 @@
     "pages/rankinglist/rankinglist",
     "pages/servicedetails/servicedetails",
     "components/counter/counter",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/allorder/allorder",
+    "pages/finishedorder/finishedorder",
+    "pages/unfinishedorder/unfinishedorder",
+    "pages/writecomments/writecomments"
   ],
   "tabBar": {
     "selectedColor": "#FFA500",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/shouye.png",

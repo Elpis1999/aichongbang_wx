@@ -323,3 +323,8 @@ page {
     text-align: center;
     line-height: 100rpx;
 }
+
+.comment-content{
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid rgb(233, 233, 233);
+}

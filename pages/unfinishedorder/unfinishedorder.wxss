@@ -1,0 +1,59 @@
+/* pages/finishedorder/finishedorder.wxss */
+
+/* pages/allorder/allorder.wxss */
+page {
+    background-color: rgb(233, 233, 233);
+}
+
+.shopInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20rpx 50rpx 20rpx 0;
+    border-bottom: 1rpx solid rgb(233, 233, 233);
+}
+
+.order-item {
+    background-color: white;
+}
+
+.v-img,
+.img {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.goods-info {
+    padding: 20rpx;
+    padding-right: 0;
+}
+
+.comment {
+    display: inline-block;
+    width: 80rpx;
+    height: 50rpx;
+    border-radius: 60rpx;
+    border: 1rpx solid orange;
+    font-size: 10pt;
+    margin-left: 20rpx;
+    text-align: center;
+    line-height: 50rpx;
+}
+
+.line-limit-length {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.canvas-box {
+    position: fixed;
+    background-color: rgba(145, 144, 144, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+}
