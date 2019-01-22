@@ -16,7 +16,9 @@
     "pages/allorder/allorder",
     "pages/finishedorder/finishedorder",
     "pages/unfinishedorder/unfinishedorder",
-    "pages/writecomments/writecomments"
+    "pages/writecomments/writecomments",
+    "pages/shop/shop",
+    "pages/search/search"
   ],
   "tabBar": {
     "selectedColor": "#FFA500",

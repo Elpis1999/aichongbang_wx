@@ -1,0 +1,44 @@
+/* pages/search/search.wxss */
+.search {
+    background-color: rgb(243, 243, 243);
+    padding: 10rpx 30rpx;
+    position: relative;
+}
+
+.search input {
+    box-sizing: border-box;
+    width: 690rpx;
+    height: 86rpx;
+    background-color: white;
+    padding-left: 80rpx;
+}
+
+.swiper-tab {
+    width: 100%;
+    border-bottom: 1rpx solid #ece7e7;
+    text-align: center;
+    line-height: 80rpx;
+}
+
+.swiper-tab-list {
+    font-size: 30rpx;
+    display: inline-block;
+    width: 33.33%;
+    color: #777777;
+}
+
+.on {
+    color: orange;
+    border-bottom: 5rpx solid orange;
+}
+
+.swiper-box {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-box view {
+    text-align: center;
+}

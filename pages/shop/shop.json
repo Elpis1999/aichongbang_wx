@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ranking-item": "../../components/ranking-item/ranking-item",
+    "shopservice-item": "../../components/shopservice-item/shopservice-item"
+  },
+  "navigationBarTitleText": "店铺"
+}

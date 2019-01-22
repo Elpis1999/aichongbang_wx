@@ -81,6 +81,20 @@ Page({
         images,
         type,
         value
+      },
+      success: () => {
+        wx.showToast({
+          title: '发表成功',
+          icon: 'success',
+          duration: 2000,
+          success: () => {
+            setTimeout(function () {
+              wx.redirectTo({
+                url: "../allorder/allorder"
+              });
+            }, 1500);
+          }
+        });
       }
     });
   },

@@ -55,7 +55,24 @@
         <image class="detailsImg" src="{{url+'/upload/'+serviceInfo.store.store_avatar}}" />
     </view>
 </view>
-<view class="details" wx:if="{{select == 1}}">321</view>
+<view class="details" wx:if="{{select == 1}}">
+    <view class="comment-item" wx:for="{{serviceComment}}" wx:for-item="comment" wx:for-index="subscript">
+        <view class="comment-content">
+            <view class="headPhoto">
+                <image src="{{comment.avatarUrl}}" style="width:100rpx;height:100rpx;" />
+                <text style="font-size:12pt;margin-left:15rpx;color:rgb(150,150,150);">
+                    {{comment.nickName}}
+                </text>
+            </view>
+            <view style="font-size:12pt;margin-top:15rpx;margin-bottom:10rpx;color:rgb(150,150,150);" class="text-content">
+                {{comment.content}}
+            </view>
+            <view class="images-container">
+                <image wx:for="{{comment.images}}" src="{{url+'/upload/'+item}}" style="width:125rpx;height:125rpx;" />
+            </view>
+        </view>
+    </view>
+</view>
 <!-- footer -->
 <view class="footer">
     <view class="footerleft">
@@ -96,7 +113,6 @@
         <view class="bigbtn" bind:tap="addToCart">确定</view>
     </view>
 </view>
-
 <!-- 立即预约 -->
 <view class='maskLayer' wx:if="{{chooseSizeBespoke}}" bindtap='hideModalBespoke'></view>
 <view class='choose' wx:if="{{chooseSizeBespoke}}" animation='{{animationDataBespoke}}'>

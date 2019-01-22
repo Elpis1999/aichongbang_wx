@@ -35,7 +35,7 @@
         <text>{{goodsInfo.store.store_name}}</text>
         <text>官方</text>
     </view>
-    <view class="jindians">进店</view>
+    <view class="jindians" bind:tap="enterShop">进店</view>
 </view>
 <view class="danbao">
     <view class="{{select == 0 ? 'border-bt' : ''}}" bind:tap="tabDetails">
@@ -67,15 +67,15 @@
     </view>
 </view>
 <view class="details" wx:if="{{select == 1}}">
-    <view class="comment-item" wx:for="{{commodityReview}}">
+    <view class="comment-item" wx:for="{{commodityReview}}" wx:for-item="comment" wx:for-index="subscript">
         <view class="comment-content">
-            <view>
-                <image src="" />
-                <text></text>
+            <view class="headPhoto">
+                <image src="{{comment.avatarUrl}}" style="width:100rpx;height:100rpx;" />
+                <text style="font-size:12pt;margin-left:15rpx;color:rgb(150,150,150);">{{comment.nickName}}</text>
             </view>
-            <view></view>
-            <view>
-                <image src="" />
+            <view style="font-size:12pt;margin-top:15rpx;margin-bottom:10rpx;color:rgb(150,150,150);" class="text-content">{{comment.content}}</view>
+            <view class="images-container">
+                <image wx:for="{{comment.images}}" src="{{url+'/upload/'+item}}" style="width:125rpx;height:125rpx;" />
             </view>
         </view>
     </view>

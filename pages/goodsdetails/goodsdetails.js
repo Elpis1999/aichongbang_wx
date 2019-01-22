@@ -46,6 +46,7 @@ Page({
     this.loadComment(options.goodsId);
   },
 
+  //获取商品的评论
   loadComment(goodsId) {
     wx.request({
       method: "get",
@@ -57,6 +58,7 @@ Page({
       success: ({
         data
       }) => {
+        console.log(data, '商品评论');
         this.setData({
           commodityReview: data
         });
@@ -148,6 +150,13 @@ Page({
   toShoppingCart() {
     wx.switchTab({
       url: "../../pages/shoppingcart/shoppingcart"
+    });
+  },
+  //进入店铺
+  enterShop() {
+    let storeId = this.data.goodsInfo.store._id;
+    wx.navigateTo({
+      url: `../shop/shop?storeId=${storeId}`
     });
   },
   //直接购买

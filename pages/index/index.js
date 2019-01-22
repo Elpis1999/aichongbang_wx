@@ -211,5 +211,10 @@ Page({
     wx.navigateTo({
       url: "../rankinglist/rankinglist"
     });
+  },
+  toSearch(e) {
+    wx.navigateTo({
+      url: "../search/search"
+    });
   }
 })

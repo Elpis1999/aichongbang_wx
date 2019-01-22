@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "font-icon": "../../components/font-icon/font-icon",
+    "ranking-item": "../../components/ranking-item/ranking-item",
+    "shopservice-item": "../../components/shopservice-item/shopservice-item"
+  }
+}

@@ -1,0 +1,16 @@
+<!-- components/ranking-item/ranking-item.wxml -->
+<view>
+    <view class="item-comtent" bind:tap="toDetails" data-goodsid="{{info._id}}">
+        <view class="img" style="margin-right:15rpx;">
+            <image class="img" src="{{url+'/upload/'+info.cover_map}}" />
+        </view>
+        <view>
+            <view class="line-limit-length">{{info.sur_rules}}-{{info.sur_name}}</view>
+            <view class="info">
+                <text>{{info.sur_weight}}</text>
+                <text>耗时：{{info.sur_time}}</text>
+            </view>
+            <view style="color:orange">￥{{info.sur_price}}</view>
+        </view>
+    </view>
+</view>

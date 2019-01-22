@@ -206,7 +206,6 @@ page {
 }
 
 .details {
-    padding-top: 20rpx;
     background-color: white;
 }
 
@@ -327,4 +326,21 @@ page {
 .comment-content{
     margin-left: 20rpx;
     border-bottom: 1rpx solid rgb(233, 233, 233);
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+}
+
+.headPhoto {
+    display: flex;
+    align-items: center;
+}
+
+.headPhoto>image{
+    border-radius: 50rpx;
+    border: 1rpx solid white;
+}
+
+.images-container{
+    display: flex;
+    flex-wrap: wrap;
 }

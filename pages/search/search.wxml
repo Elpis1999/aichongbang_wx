@@ -1,0 +1,25 @@
+<!-- pages/search/search.wxml -->
+<view class="search">
+    <input type="text" placeholder="搜索商品/服务" bindblur="searchGoods" bindinput="input" />
+    <font-icon name="sousuo" size="50" color="black" style="position:absolute;top:30rpx;left:50rpx;" />
+</view>
+<view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+        商品
+    </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+        服务
+    </view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{height}}px" bindchange="bindChange">
+    <swiper-item>
+        <scroll-view style="height:100%;">
+            <ranking-item wx:for="{{goods}}" info="{{item}}" wx:key="{{item._id}}" />
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+        <scroll-view style="height:100%;">
+            <shopservice-item wx:for="{{service}}" info="{{item}}" wx:key="{{item._id}}" />
+        </scroll-view>
+    </swiper-item>
+</swiper>

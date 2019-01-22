@@ -21,13 +21,15 @@ Page({
     animationDataBespoke: {},
     timeArr: [],
     timeAry: [],
-    index: 0
+    index: 0,
+    serviceComment: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     this.show(options);
   },
   show(options) {
@@ -90,7 +92,6 @@ Page({
                 timeAry.push(data.sur_date[i]);
               }
             }
-            console.log(timeArr, timeAry, 'arr');
 
             this.setData({
               serviceInfo: data,
@@ -99,6 +100,25 @@ Page({
               timeAry
             });
           }
+        });
+      }
+    });
+    this.serviceReview(options.serviceId);
+  },
+  //获取服务评论
+  serviceReview(serviceId) {
+    wx.request({
+      method: "get",
+      url: url + "/wxgoods/goodsComment",
+      data: {
+        type: "service",
+        value: serviceId
+      },
+      success: ({
+        data
+      }) => {
+        this.setData({
+          serviceComment: data
         });
       }
     });

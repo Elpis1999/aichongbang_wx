@@ -8,7 +8,7 @@
         <font-icon name="xiayibu" size="40" color="white" />
     </view>
     <view class="search">
-        <input type="text" placeholder="搜索商品/服务" />
+        <input type="text" placeholder="搜索商品/服务" bindfocus="toSearch" />
         <font-icon name="sousuo" size="50" color="black" style="position:absolute;top:30rpx;left:50rpx;" />
     </view>
     <view class="title-img"></view>
