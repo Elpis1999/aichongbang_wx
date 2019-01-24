@@ -31,7 +31,7 @@
         <text class="m-font" style="margin-left:10rpx;">{{store[0].store.store_name}}</text>
     </view>
     <view class="item" wx:for="{{commodity[num]}}">
-        <view wx:if="{{item.class!=2}}">
+        <view wx:if="{{item.class!=2}}" data-goodsId="{{item._id}}" catch:tap="toGoodsDetails">
             <view class="image">
                 <image class="img" src="{{url+'/upload/'+item.bigpic}}" />
             </view>
@@ -50,7 +50,7 @@
                 </view>
             </view>
         </view>
-        <view wx:if="{{item.class==2}}">
+        <view wx:if="{{item.class==2}}" data-serviceId="{{item._id}}" catch:tap="toserviceDetails">
             <view class="image">
                 <image class="img" src="{{url+'/upload/'+item.cover_map}}" />
             </view>

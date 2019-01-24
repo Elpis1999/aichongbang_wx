@@ -4,6 +4,10 @@
     border-bottom: 1rpx solid #ece7e7;
     text-align: center;
     line-height: 80rpx;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    background-color: white;
 }
 
 .swiper-tab-list {
@@ -23,6 +27,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
+    margin-top: 100rpx;
 }
 
 .swiper-box view {

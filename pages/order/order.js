@@ -137,53 +137,73 @@ Page({
       url: "../addresslist/addresslist"
     });
   },
+  //提交订单
   placeOrder() {
     let openId = wx.getStorageSync('openId');
     let {
       address,
       petMaster
     } = this.data
-    let order = {};
-    order.openId = openId;
-    order.userName = address.name;
-    order.addr = address.region + ',' + address.dAddress;
-    order.phone = address.phone;
-    order.petMasterId = petMaster._id;
-    let thing = JSON.parse(newOptions.shoppingCart);
-    for (let i = 0; i < thing.length; i++) {
-      for (let j = 0; j < thing[i].length; j++) {
-        if (thing[i][j].class == 2) {
-          thing[i][j].state = "未完成";
-        } else {
-          thing[i][j].state = "已完成";
+
+    if (JSON.stringify(address) === '{}') {
+      wx.showToast({
+        title: '请填写地址',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      let order = {};
+      order.openId = openId;
+      order.userName = address.name;
+      order.addr = address.region + ',' + address.dAddress;
+      order.phone = address.phone;
+      order.petMasterId = petMaster._id;
+      let thing = JSON.parse(newOptions.shoppingCart);
+      for (let i = 0; i < thing.length; i++) {
+        for (let j = 0; j < thing[i].length; j++) {
+          if (thing[i][j].class == 2) {
+            thing[i][j].state = "未完成";
+          } else {
+            thing[i][j].state = "已完成";
+          }
         }
       }
+      order.thing = thing;
+      let newDate = formatTime(new Date());
+      order.time = newDate;
+      wx.request({
+        method: "post",
+        url: url + "/wxgoods/generateOrder",
+        data: order,
+        success: () => {
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 5000,
+            success: () => {
+              wx.setStorage({
+                key: 'refresh',
+                data: 1
+              });
+              wx.switchTab({
+                url: "../shoppingcart/shoppingcart"
+              });
+            }
+          });
+        }
+      });
     }
-    order.thing = thing;
-    let newDate = formatTime(new Date());
-    order.time = newDate;
-    wx.request({
-      method: "post",
-      url: url + "/wxgoods/generateOrder",
-      data: order,
-      success: () => {
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 5000,
-          success: () => {
-            wx.setStorage({
-              key: 'refresh',
-              data: 1
-            });
-            wx.switchTab({
-              url: "../shoppingcart/shoppingcart"
-            });
-          }
-        });
-
-      }
+  },
+  toGoodsDetails(e) {
+    let goodsId = e.currentTarget.dataset.goodsid;
+    wx.navigateTo({
+      url: `../goodsdetails/goodsdetails?goodsId=${goodsId}`
     });
-
+  },
+  toserviceDetails(e) {
+    let serviceId = e.currentTarget.dataset.serviceid;
+    wx.navigateTo({
+      url: `../servicedetails/servicedetails?serviceId=${serviceId}`
+    });
   }
 })

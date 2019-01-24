@@ -382,7 +382,6 @@ Page({
     })
 
     let newShoppingCart = deepcopy(shoppingCart);
-
     for (let i = 0; i < newShoppingCart.length; i++) {
       for (let j = 0; j < newShoppingCart[i].length; j++) {
         if (newShoppingCart[i][j].choice == 0) {
@@ -398,7 +397,6 @@ Page({
 
     for (let i = 0; i < newShoppingCart.length; i++) {
       for (let j = 0; j < newShoppingCart[i].length; j++) {
-        console.log(newShoppingCart[i][j].choice);
         if (newShoppingCart[i][j].choice == 0) {
           newShoppingCart[i].splice(j, 1);
         }
@@ -450,7 +448,34 @@ Page({
     }
   },
   delete(e) {
-    console.log(e);
+    let openId = wx.getStorageSync('openId');
+    let shoppingCart = this.data.shoppingCart;
+    let newShoppingCart = deepcopy(shoppingCart);
+    let goodsArr = [];
+    for (let i = 0; i < newShoppingCart.length; i++) {
+      for (let j = 0; j < newShoppingCart[i].length; j++) {
+        if (newShoppingCart[i][j].choice == 1) {
+          let itemId = newShoppingCart[i][j]._id;
+          goodsArr.push(itemId);
+        }
+      }
+    }
+    wx.request({
+      method: "post",
+      url: url + '/wxgoods/deleteGoodsArr',
+      data: {
+        openId,
+        goodsArr
+      },
+      success: () => {
+        wx.showToast({
+          title: '删除成功',
+          icon: 'success',
+          duration: 2000
+        })
+        this.show();
+      }
+    });
   },
   delItem(e) {
     let itemId = e.currentTarget.dataset.id;

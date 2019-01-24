@@ -27,7 +27,7 @@
         <text>{{serviceInfo.store.store_name}}</text>
         <text>官方</text>
     </view>
-    <view class="jindians">进店</view>
+    <view class="jindians" data-storeId="{{serviceInfo.store._id}}" catch:tap="toShop">进店</view>
 </view>
 <view class="danbao">
     <view class="{{select == 0 ? 'border-bt' : ''}}" bind:tap="tabDetails">

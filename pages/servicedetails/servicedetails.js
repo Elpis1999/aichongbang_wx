@@ -282,6 +282,7 @@ Page({
           if (data.status === 0) {
             wx.showToast({
               title: '添加失败购物车中已存在',
+              icon: "none",
               duration: 2000
             })
             this.hideModal();
@@ -298,6 +299,7 @@ Page({
     } else {
       wx.showToast({
         title: '请选择预约时间',
+        icon: "none",
         duration: 2000
       })
     }
@@ -325,8 +327,16 @@ Page({
     } else {
       wx.showToast({
         title: '请选择预约时间',
+        icon: "none",
         duration: 2000
       })
     }
+  },
+  //跳转店铺
+  toShop(e) {
+    let storeId = e.currentTarget.dataset.storeid;
+    wx.navigateTo({
+      url: `../shop/shop?storeId=${storeId}`
+    });
   }
 })

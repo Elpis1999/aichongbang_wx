@@ -32,7 +32,7 @@ const conversionFormatTime = data => {
       let serviceDay = time[2];
       let serviceHours = time[3].split(":")[0];
       let serviceMinutes = time[3].split(":")[1];
-      if (serviceYear == year && serviceMonth == month && serviceDay == day && serviceHours >= hours && serviceMinutes > minutes) {
+      if (serviceYear == year && serviceMonth == month && serviceDay == day && serviceHours >= hours) {
         timeArr.push("今天" + time[3] + "-" + time[4]);
         timeAry.push(data[i]);
       } else if (serviceYear == year && serviceMonth == month && serviceDay == day + 1) {
@@ -75,27 +75,17 @@ const conversionFormatTime = data => {
   }
 }
 
-
-function deepcopy(arr) {
-  // 在函数内使用var声明一个拷贝数组用于拷贝
-  var copyArr = new Array;
-  for (i = 0; i < arr.length; i++) {
-    // 判断第i位是否为数组(二维)
-    if (typeof arr[i] == "object") {
-      // 若第i位是数组我们就将copyArr的第i位也置为数组（这里使用
-      copyArr[i] = new Array();
-      for (j = 0; j < arr[i].length; j++) {
-        copyArr[i][j] = arr[i][j];
-      }
-      // 如果不是数组则直接赋值
-    } else {
-      copyArr[i] = arr[i];
-    }
+function deepcopy(obj) {
+  var out = [],
+    i = 0,
+    len = obj.length;
+  for (; i < len; i++) {
+    if (obj[i] instanceof Array) {
+      out[i] = deepcopy(obj[i]);
+    } else out[i] = obj[i];
   }
-  // 返回我们的拷贝数组
-  return copyArr;
+  return out;
 }
-
 
 
 module.exports = {

@@ -249,7 +249,7 @@ page {
 
 .choose {
     width: 100%;
-    height: 450rpx;
+    height: 467rpx;
     background-color: white;
     position: fixed;
     bottom: 0;

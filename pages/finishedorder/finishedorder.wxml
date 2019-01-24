@@ -13,17 +13,17 @@
                 <image class="img" src="{{url+'/upload/'+item.bigpic}}" />
             </view>
             <view style="margin-left:20rpx;">
-                <view style="font-size:12pt;" class="line-limit-length">
+                <view style="font-size:12pt;width:455rpx;" class="line-limit-length">
                     {{item.supp_gd_brand}}
                 </view>
-                <view style="font-size:10pt;color:#8d8d8d;" class="line-limit-length">
+                <view style="font-size:10pt;color:#8d8d8d;width:455rpx;" class="line-limit-length">
                     {{item.supp_gd_type}}-{{item.supp_gd_taste}}
                 </view>
-                <view style="display:flex;justify-content: space-between;margin-top:10rpx;">
+                <view style="display:flex;justify-content: space-between;margin-top:10rpx;width:455rpx;" class="line-limit-length">
                     <text style="font-size:10pt;color:#8d8d8d;">X{{item.purchaseQuantity}}</text>
                     <text style="font-size:10pt;color:orange;">￥{{item.subtotal}}</text>
                 </view>
-                <view style="display:flex;align-items: center;margin-top:15rpx;">
+                <view style="display:flex;align-items: center;margin-top:15rpx;width:455rpx;" class="line-limit-length">
                     <text style="font-size:10pt;color:#8d8d8d;line-height:0;">
                         {{item.state}}  {{item.creationTime}}
                     </text>
@@ -36,10 +36,10 @@
                 <image class="img" src="{{url+'/upload/'+item.cover_map}}" />
             </view>
             <view style="margin-left:20rpx;">
-                <view style="font-size:12pt;">{{item.sur_rules}}-{{item.sur_name}}</view>
-                <view style="font-size:10pt;color:#8d8d8d;">{{item.sur_weight}}</view>
-                <view style="font-size:10pt;color:orange;margin-top:10rpx;">{{item.sur_date}}</view>
-                <view style="display:flex;align-items: center;margin-top:15rpx;">
+                <view style="font-size:12pt;width:455rpx;" class="line-limit-length">{{item.sur_rules}}-{{item.sur_name}}</view>
+                <view style="font-size:10pt;color:#8d8d8d;width:455rpx;" class="line-limit-length">{{item.sur_weight}}</view>
+                <view style="font-size:10pt;color:orange;margin-top:10rpx;width:455rpx;" class="line-limit-length">{{item.sur_date}}</view>
+                <view style="display:flex;align-items: center;margin-top:15rpx;width:455rpx;" class="line-limit-length">
                     <text style="font-size:10pt;color:#8d8d8d;">{{item.state}}</text>
                     <font-icon catchtap="nothing" name="erweima" size="30" color="#8d8d8d" wx:if="{{item.state == '已完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" />
                     <text class="comment" catch:tap="toComment" data-id="{{item._id}}" data-type="{{'service'}}">评价</text>

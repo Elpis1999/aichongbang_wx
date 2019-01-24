@@ -5,14 +5,14 @@
     align-items: center;
 }
 
-.header image{
+.header image {
     width: 100rpx;
     height: 100rpx;
-    border-radius: 50rpx;
+    border-radius: 71rpx;
     border: 5rpx solid white;
 }
 
-.header text{
+.header text {
     font-size: 12pt;
     margin-left: 20rpx;
 }

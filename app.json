@@ -25,8 +25,7 @@
     "selectedColor": "#FFA500",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/shouye.png",
@@ -51,5 +50,10 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }

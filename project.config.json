@@ -13,7 +13,7 @@
 		"uglifyFileName": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.5.0",
+	"libVersion": "2.5.1",
 	"appid": "wxefda8370997008e9",
 	"projectname": "aichongbang_wx",
 	"debugOptions": {

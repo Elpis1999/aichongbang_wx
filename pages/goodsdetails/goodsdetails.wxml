@@ -126,11 +126,11 @@
                 <view>
                     <view style="font-size:12pt;">购买数量:</view>
                     <view style="font-size:10pt;color:rgb(200, 200, 200);">
-                        剩余{{goodsInfo.surplus-goodsInfo.salesVolume}}件
+                        剩余{{goodsInfo.surplus}}件
                     </view>
                 </view>
                 <view>
-                    <counter maxNumber="{{goodsInfo.surplus-goodsInfo.salesVolume}}" bind:changeNumber="changeNumber" />
+                    <counter maxNumber="{{goodsInfo.surplus}}" bind:changeNumber="changeNumber" />
                 </view>
             </view>
         </view>
@@ -168,11 +168,11 @@
                 <view>
                     <view style="font-size:12pt;">购买数量:</view>
                     <view style="font-size:10pt;color:rgb(200, 200, 200);">
-                        剩余{{goodsInfo.surplus-goodsInfo.salesVolume}}件
+                        剩余{{goodsInfo.surplus}}件
                     </view>
                 </view>
                 <view>
-                    <counter maxNumber="{{goodsInfo.surplus-goodsInfo.salesVolume}}" bind:changeNumber="changeNumber" />
+                    <counter maxNumber="{{goodsInfo.surplus}}" bind:changeNumber="changeNumber" />
                 </view>
             </view>
         </view>
