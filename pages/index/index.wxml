@@ -1,16 +1,18 @@
 <!-- index.wxml -->
+<view class="address">
+    <view class="address-text">
+        <font-icon name="weizhi" size="40" color="white" bind:tap="consultMap" />
+        <text class="line-limit-length" style="margin-left:7rpx;font-size:12pt;display:inline-block;width:605rpx;line-height:19rpx;height:50rpx;">
+            距离最近：{{nearestShop.store_name}}  {{nearestShop.store_bus_addr}}
+        </text>
+    </view>
+    <font-icon name="xiayibu" size="40" color="white" bind:tap="toStoreList" />
+</view>
+<view class="search">
+    <input type="text" placeholder="搜索商品/服务" catchfocus="toSearch" />
+    <font-icon name="sousuo" size="50" color="black" style="position:absolute;top:30rpx;left:50rpx;" />
+</view>
 <scroll-view scroll-y="{{true}}">
-    <view class="address">
-        <view class="address-text">
-            <font-icon name="weizhi" size="40" color="white" bind:tap="consultMap" />
-            <text class="line-limit-length" style="margin-left:7rpx;font-size:12pt;display:inline-block;width:605rpx;">距离最近：{{nearestShop.store_name}}  {{nearestShop.store_bus_addr}}</text>
-        </view>
-        <font-icon name="xiayibu" size="40" color="white" bind:tap="toStoreList" />
-    </view>
-    <view class="search">
-        <input type="text" placeholder="搜索商品/服务" bindfocus="toSearch" />
-        <font-icon name="sousuo" size="50" color="black" style="position:absolute;top:30rpx;left:50rpx;" />
-    </view>
     <view class="title-img"></view>
     <view class="classification-container">
         <view class="classification" bind:tap="toServer">

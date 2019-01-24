@@ -16,9 +16,8 @@ Page({
     shearing: [],
     bathe: [],
     url,
-    nearestShop: {}
+    nearestShop: {},
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -100,7 +99,6 @@ Page({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res,"*********************************");
         wx.request({
           url: 'https://api.weixin.qq.com/sns/jscode2session',
           data: {
@@ -113,7 +111,6 @@ Page({
           success: ({
             data
           }) => {
-            console.log(data,"-------------------------------");
             let openId = data.openid;
             wx.setStorage({
               key: 'openId',
@@ -142,9 +139,6 @@ Page({
                     pm_integral: "",
                     pm_ownpet: [],
                     openId
-                  },
-                  success:()=>{
-                    console.log("进来了");
                   }
                 });
               }

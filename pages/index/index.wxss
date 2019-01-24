@@ -27,6 +27,7 @@
   position: relative;
   position: fixed;
   top: 83rpx;
+  z-index: 99;
 }
 
 .search input {
@@ -56,6 +57,7 @@
   padding: 0 15rpx;
   position: fixed;
   top: 0;
+  z-index: 99;
 }
 
 .decorate {
