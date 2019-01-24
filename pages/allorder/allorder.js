@@ -187,8 +187,29 @@ Page({
       id,
       type
     } = e.currentTarget.dataset;
-    wx.redirectTo({
+    wx.navigateTo({
       url: `../writecomments/writecomments?type=${type}&id=${id}`
     });
+  },
+  toGoodsDetails(e) {
+    let goodsId = e.currentTarget.dataset.goodsid;
+    wx.navigateTo({
+      url: `../goodsdetails/goodsdetails?goodsId=${goodsId}`
+    });
+  },
+  toserviceDetails(e) {
+    let serviceId = e.currentTarget.dataset.serviceid;
+    wx.navigateTo({
+      url: `../servicedetails/servicedetails?serviceId=${serviceId}`
+    });
+  },
+  toShop(e) {
+    let storeId = e.currentTarget.dataset.storeid;
+    wx.navigateTo({
+      url: `../shop/shop?storeId=${storeId}`
+    });
+  },
+  nothing(){
+    return;
   }
 })

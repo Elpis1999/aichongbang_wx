@@ -181,5 +181,35 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  toShop(e) {
+    let storeId = e.currentTarget.dataset.storeid;
+    wx.navigateTo({
+      url: `../shop/shop?storeId=${storeId}`
+    });
+  },
+  toserviceDetails(e) {
+    let serviceId = e.currentTarget.dataset.serviceid;
+    wx.navigateTo({
+      url: `../servicedetails/servicedetails?serviceId=${serviceId}`
+    });
+  },
+  nothing() {
+    return;
+  },
+  toGoodsDetails(e) {
+    let goodsId = e.currentTarget.dataset.goodsid;
+    wx.navigateTo({
+      url: `../goodsdetails/goodsdetails?goodsId=${goodsId}`
+    });
+  },
+  toComment(e) {
+    let {
+      id,
+      type
+    } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../writecomments/writecomments?type=${type}&id=${id}`
+    });
+  },
 })

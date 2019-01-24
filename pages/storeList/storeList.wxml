@@ -1,0 +1,9 @@
+<!-- pages/storeList/storeList.wxml -->
+<view wx:for="{{store}}" wx:key="item._id" class="store-item">
+    <view>
+        <image src="{{url+'/upload/'+item.store_avatar}}" />
+        <text style="flex:1;margin-left:15rpx;">{{item.store_name}}</text>
+        <view class="btn" style="margin-right:30rpx;" bind:tap="toStore" data-storeId="{{item._id}}">进店</view>
+        <text style="margin-right:30rpx;color:skyblue" data-index="{{index}}" bind:tap="viewLocation">查看位置</text>
+    </view>
+</view>

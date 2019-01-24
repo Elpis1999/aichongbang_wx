@@ -1,0 +1,37 @@
+/* pages/storeList/storeList.wxss */
+.store-item{
+    padding: 30rpx 0 0 20rpx;
+    box-sizing: border-box;
+}
+
+.store-item image{
+    width: 125rpx;
+    height: 125rpx;
+    border-radius: 84.5rpx;
+    border: 5rpx solid white;
+    display: inline-block;
+}
+
+.store-item text{
+    color: rgb(128, 125, 125);
+    font-size: 12pt;
+}
+
+.store-item>view{
+    padding-bottom: 30rpx;
+    border-bottom: 1rpx solid rgb(233, 233, 233);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.btn{
+    width: 75rpx;
+    height: 50rpx;
+    background-color: orange;
+    color: white;
+    font-size: 10pt;
+    border-radius: 12rpx;
+    text-align: center;
+    line-height: 50rpx;
+}

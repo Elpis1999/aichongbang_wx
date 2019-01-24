@@ -1,11 +1,11 @@
 <!-- index.wxml -->
 <scroll-view scroll-y="{{true}}">
     <view class="address">
-        <view>
-            <font-icon name="weizhi" size="40" color="white" />
-            <text style="margin-left:7rpx;font-size:12pt;">{{address}}</text>
+        <view class="address-text">
+            <font-icon name="weizhi" size="40" color="white" bind:tap="consultMap" />
+            <text class="line-limit-length" style="margin-left:7rpx;font-size:12pt;display:inline-block;width:605rpx;">距离最近：{{nearestShop.store_name}}  {{nearestShop.store_bus_addr}}</text>
         </view>
-        <font-icon name="xiayibu" size="40" color="white" />
+        <font-icon name="xiayibu" size="40" color="white" bind:tap="toStoreList" />
     </view>
     <view class="search">
         <input type="text" placeholder="搜索商品/服务" bindfocus="toSearch" />

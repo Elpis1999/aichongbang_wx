@@ -13,26 +13,28 @@
         </view>
     </view>
     <view class="carttext" wx:for="{{shoppingCart[num]}}">
-        <view class="carttxt" wx:if="{{item.class==2}}">
-            <font-icon data-time="{{item.sur_date}}" data-index="{{num}}" bind:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
+        <view class="carttxt" wx:if="{{item.class==2}}" data-serviceId="{{item._id}}" catch:tap="toServiceDetails">
+            <font-icon data-time="{{item.sur_date}}" data-index="{{num}}" catch:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
             <view class="img">
                 <image src="{{url+'/upload/'+item.cover_map}}" />
             </view>
             <view class="num">
                 <text>{{item.sur_rules}}-{{item.sur_name}}</text>
                 <text>{{item.sur_time}}</text>
+                <text style="margin-bottom:15rpx;">{{item.timeSlot}}</text>
+                <!-- <picker catch:tap="selectionTime" data-serviceId="{{item._id}}" value="{{index}}" range="{{serviceArr[0].timeArr}}" wx:if="{{bianji}}">
+                    <text class="picker" style="margin-bottom:15rpx;">{{serviceArr[0].timeArr[0]}}</text>
+                </picker> -->
                 <view class="jiage">
-                    <text wx:if="{{!bianji}}">￥{{item.sur_price}}</text>
-                    <text wx:if="{{!bianji}}">{{item.sur_date}}</text>
+                    <text>￥{{item.sur_price}}</text>
                 </view>
-                <view class="del" data-time="{{item.sur_date}}" wx:if="{{bianji}}" bind:tap="delItemService">
+                <view class="del" data-time="{{item.sur_date}}" wx:if="{{bianji}}" catch:tap="delItemService">
                     删除
                 </view>
             </view>
-
         </view>
-        <view class="carttxt" wx:if="{{item.class!=2}}">
-            <font-icon data-id="{{item._id}}" data-index="{{num}}" bind:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
+        <view class="carttxt" wx:if="{{item.class!=2}}" data-goodsId="{{item._id}}" catch:tap="toGoodsDetails">
+            <font-icon data-id="{{item._id}}" data-index="{{num}}" catch:tap="iconSwitch" name="{{item.choice ===1 ? 'xuanzhong' : 'yuanquan'}}" size="40" color="orange" style="margin-left:10rpx;" />
             <view class="img">
                 <image src="{{url+'/upload/'+item.bigpic}}" />
             </view>
@@ -40,11 +42,13 @@
                 <text>{{item.supp_gd_brand}}</text>
                 <text>{{item.supp_gd_material}}，6个月以上</text>
                 <view class="jiage">
-                    <text wx:if="{{!bianji}}">￥{{item.subtotal}}</text>
-                    <text wx:if="{{!bianji}}">X{{item.purchaseQuantity}}</text>
-                    <shoppingcart-counter data-id="{{item._id}}" maxNumber="{{100}}" num="{{item.purchaseQuantity}}" bind:changeNumber="changeNumber" wx:if="{{bianji}}" />
+                    <text>￥{{item.subtotal}}</text>
+                    <text>X{{item.purchaseQuantity}}</text>
                 </view>
-                <view class="del" data-id="{{item._id}}" wx:if="{{bianji}}" bind:tap="delItem">
+                <view style="margin-top:15rpx;">
+                    <shoppingcart-counter data-id="{{item._id}}" maxNumber="{{item.getnumber-item.purchaseQuantity}}" num="{{item.purchaseQuantity}}" catch:changeNumber="changeNumber" wx:if="{{bianji}}" />
+                </view>
+                <view class="del" data-id="{{item._id}}" wx:if="{{bianji}}" catch:tap="delItem">
                     删除
                 </view>
             </view>

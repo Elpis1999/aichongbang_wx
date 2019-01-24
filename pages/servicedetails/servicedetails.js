@@ -3,7 +3,7 @@ let {
   url
 } = require("../../config/index");
 let {
-  formatTime
+  conversionFormatTime
 } = require("../../utils/util");
 Page({
 
@@ -53,14 +53,6 @@ Page({
             arr.push(`${url}/upload/${data.cover_map}`);
             let timeArr = [];
             let timeAry = [];
-            let date = new Date();
-            let year = date.getFullYear().toString();
-            let month = (date.getMonth() + 1).toString();
-            let day = date.getDate().toString();
-            let hours = date.getHours().toString();
-            let minutes = date.getMinutes().toString();
-            minutes = (hours * 60) + minutes;
-
             for (let k = 0; k < data.sur_date.length; k++) {
               for (let i = 0; i < petMasters.length; i++) {
                 for (let j = 0; j < petMasters[i].reservationService.length; j++) {
@@ -71,33 +63,13 @@ Page({
               }
             }
 
-            for (let i = 0; i < data.sur_date.length; i++) {
-              let tiem = data.sur_date[i].split("-");
-              let timeHours = tiem[3].split(":")[0];
-              let tiemMinutes = tiem[3].split(":")[1];
-              tiemMinutes = (timeHours * 60) + tiemMinutes;
-              console.log(parseInt(hours) < parseInt(timeHours));
-              console.log(hours, timeHours);
-              if (tiem[0] == year && tiem[1] == month && tiem[2] == day && parseInt(hours) < parseInt(timeHours)) {
-                timeArr.push("今天" + tiem[3] + "-" + tiem[4]);
-                timeAry.push(data.sur_date[i]);
-              } else if (tiem[0] == year && tiem[1] == month && tiem[2] == parseInt(day) + 1 && hours < timeHours) {
-                timeArr.push("明天" + tiem[3] + "-" + tiem[4]);
-                timeAry.push(data.sur_date[i]);
-              } else if (tiem[0] == year && tiem[1] == month && tiem[2] == parseInt(day) + 2 && hours < timeHours) {
-                timeArr.push("后天" + tiem[3] + "-" + tiem[4]);
-                timeAry.push(data.sur_date[i]);
-              } else if (tiem[0] == year && tiem[1] == month && tiem[2] <= day && hours < timeHours) {
-                timeArr.push(data.sur_date[i]);
-                timeAry.push(data.sur_date[i]);
-              }
-            }
-
+            let obj = conversionFormatTime(data.sur_date);
+            console.log(obj, 'obj');
             this.setData({
               serviceInfo: data,
               imgUrls: arr,
-              timeArr,
-              timeAry
+              timeArr: obj.timeArr,
+              timeAry: obj.timeAry
             });
           }
         });

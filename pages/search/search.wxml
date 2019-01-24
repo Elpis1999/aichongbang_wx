@@ -1,6 +1,6 @@
 <!-- pages/search/search.wxml -->
 <view class="search">
-    <input type="text" placeholder="搜索商品/服务" bindblur="searchGoods" bindinput="input" />
+    <input type="text" placeholder="搜索商品/服务" bindblur="searchGoods" bindinput="input" bindconfirm="searchGoods" auto-focus="{{true}}" />
     <font-icon name="sousuo" size="50" color="black" style="position:absolute;top:30rpx;left:50rpx;" />
 </view>
 <view class="swiper-tab">

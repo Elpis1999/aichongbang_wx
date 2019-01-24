@@ -5,9 +5,5 @@
     "modal-frame": "../../components/modal-frame/modal-frame",
     "counter": "../../components/counter/counter"
   },
-  "navigationBarBackgroundColor": "#000",
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "商品详情",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "navigationBarTitleText": "商品详情"
 }

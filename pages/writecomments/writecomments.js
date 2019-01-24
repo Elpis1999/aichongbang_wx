@@ -86,10 +86,10 @@ Page({
         wx.showToast({
           title: '发表成功',
           icon: 'success',
-          duration: 2000,
+          duration: 1000,
           success: () => {
             setTimeout(function () {
-              wx.redirectTo({
+              wx.navigateBack({
                 url: "../allorder/allorder"
               });
             }, 1500);

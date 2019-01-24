@@ -15,29 +15,35 @@ Page({
     catFood: [],
     shearing: [],
     bathe: [],
-    url
+    url,
+    nearestShop: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getLocation({
-      type: 'gcj02',
-      success: (res) => {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        wx.request({
-          url: 'https://api.map.baidu.com/geocoder/v2/?ak=1PZH3APruxDvNkbQheag4vXntKZlF6Bu&location=' + latitude + "," + longitude + "&output=json",
-          method: "get",
-          success: (res) => {
-            this.setData({
-              address: res.data.result.formatted_address
-            });
-          }
-        })
-      }
-    });
+    // wx.getLocation({
+    //   type: 'gcj02',
+    //   success: (res) => {
+    //     const latitude = res.latitude
+    //     const longitude = res.longitude
+
+    //     wx.request({
+    //       url: 'https://api.map.baidu.com/geocoder/v2/?ak=1PZH3APruxDvNkbQheag4vXntKZlF6Bu&location=' + latitude + "," + longitude + "&output=json",
+    //       method: "get",
+    //       success: (res) => {
+    //         this.setData({
+    //           address: res.data.result.formatted_address
+    //         });
+    //       }
+    //     })
+    //   }
+    // });
+
+
+    this.nearestDistance();
+
     wx.request({
       url: url + "/wxgoods/indexGoods",
       method: "get",
@@ -73,7 +79,7 @@ Page({
       },
       success: (res) => {
         this.setData({
-          shearing: res.data
+          bathe: res.data
         });
       }
     });
@@ -86,7 +92,7 @@ Page({
       },
       success: (res) => {
         this.setData({
-          bathe: res.data
+          shearing: res.data
         });
       }
     });
@@ -192,6 +198,11 @@ Page({
   onShareAppMessage: function () {
 
   },
+  toStoreList() {
+    wx.navigateTo({
+      url: "../storeList/storeList"
+    });
+  },
   goShoppingCart(e) {
     wx.switchTab({
       url: "../shoppingcart/shoppingcart"
@@ -216,5 +227,42 @@ Page({
     wx.navigateTo({
       url: "../search/search"
     });
+  },
+  nearestDistance() {
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        wx.request({
+          method: "get",
+          url: url + '/wxgoods/searchShopByLL',
+          data: {
+            latitude,
+            longitude
+          },
+          success: ({
+            data
+          }) => {
+            this.setData({
+              nearestShop: data
+            });
+          }
+        });
+      }
+    })
+  },
+  consultMap() {
+    let {
+      latitude,
+      longitude
+    } = this.data.nearestShop;
+    latitude = parseFloat(latitude);
+    longitude = parseFloat(longitude);
+    wx.openLocation({
+      latitude,
+      longitude,
+      scale: 18
+    })
   }
 })

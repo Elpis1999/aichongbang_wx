@@ -148,3 +148,7 @@ page {
 .num {
     flex: 1;
 }
+
+.picker {
+    height: 30rpx;
+}

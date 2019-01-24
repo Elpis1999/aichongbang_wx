@@ -49,7 +49,7 @@ Page({
         this.setData({
           goods: data.newGoods,
           service: data.newService,
-          height: 143 * data.newGoods.length
+          height: 140 * data.newGoods.length
         });
       }
     });

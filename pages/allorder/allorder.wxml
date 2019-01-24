@@ -1,6 +1,6 @@
 <!-- pages/allorder/allorder.wxml -->
 <view wx:for="{{shopOrder}}" wx:for-item="arr" wx:for-index="subscript" class="order-item">
-    <view class="shopInfo">
+    <view class="shopInfo" data-storeId="{{arr[0].store._id}}" bind:tap="toShop">
         <view>
             <font-icon name="dianpu" size="40" color="#8d8d8d" style="margin-left:30rpx;" />
             <text style="font-size:12pt;margin-left:15rpx;">{{arr[0].store.store_name}}</text>
@@ -8,7 +8,7 @@
         <font-icon name="xiayibu" size="30" color="#8d8d8d" />
     </view>
     <view wx:for="{{arr}}" class="goods-info">
-        <view wx:if="{{item.class != 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;">
+        <view wx:if="{{item.class != 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;" data-goodsid="{{item._id}}" bindtap="toGoodsDetails">
             <view class="v-img">
                 <image class="img" src="{{url+'/upload/'+item.bigpic}}" />
             </view>
@@ -31,7 +31,7 @@
                 </view>
             </view>
         </view>
-        <view wx:if="{{item.class == 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;">
+        <view wx:if="{{item.class == 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;" data-serviceId="{{item._id}}" bindtap="toserviceDetails">
             <view class="v-img">
                 <image class="img" src="{{url+'/upload/'+item.cover_map}}" />
             </view>
@@ -41,10 +41,10 @@
                 <view style="font-size:10pt;color:orange;margin-top:10rpx;">{{item.sur_date}}</view>
                 <view style="display:flex;align-items: center;margin-top:15rpx;">
                     <text style="font-size:10pt;color:#8d8d8d;">{{item.state}}</text>
-                    <font-icon name="erweima" size="30" color="orange" wx:if="{{item.state == '未完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" bind:tap="generateQRCode" />
+                    <font-icon name="erweima" size="30" color="orange" wx:if="{{item.state == '未完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" catch:tap="generateQRCode" />
                     <font-icon name="erweima" size="30" color="#8d8d8d" wx:if="{{item.state == '已完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" />
-                    <text class="comment" wx:if="{{item.state == '已完成'}}" bind:tap="toComment" data-id="{{item._id}}" data-type="{{'service'}}">评价</text>
-                    <text class="comment" wx:if="{{item.state == '未完成'}}" style="border:1rpx solid rgb(233,233,233);">评价</text>
+                    <text class="comment" wx:if="{{item.state == '已完成'}}" catch:tap="toComment" data-id="{{item._id}}" data-type="{{'service'}}">评价</text>
+                    <text class="comment" wx:if="{{item.state == '未完成'}}" catch:tap="nothing" style="border:1rpx solid rgb(233,233,233);">评价</text>
                 </view>
             </view>
         </view>

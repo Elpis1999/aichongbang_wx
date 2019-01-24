@@ -328,3 +328,8 @@ page {
     display: flex;
     flex-wrap: wrap;
 }
+
+.picker{
+    height: 55rpx;
+    line-height: 55rpx;
+}

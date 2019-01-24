@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "font-icon": "../../components/font-icon/font-icon"
-  }
+  },
+  "navigationBarTitleText": "未完成订单"
 }

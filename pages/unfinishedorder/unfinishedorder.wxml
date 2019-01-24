@@ -1,8 +1,6 @@
-<!--pages/finishedorder/finishedorder.wxml-->
-
-
+<!-- pages/finishedorder/finishedorder.wxml -->
 <view wx:for="{{shopOrder}}" wx:for-item="arr" wx:if="{{shopOrder.length != 0}}" wx:for-index="subscript" class="order-item">
-    <view class="shopInfo">
+    <view class="shopInfo" data-storeId="{{arr[0].store._id}}" bind:tap="toShop">
         <view>
             <font-icon name="dianpu" size="40" color="#8d8d8d" style="margin-left:30rpx;" />
             <text style="font-size:12pt;margin-left:15rpx;">{{arr[0].store.store_name}}</text>
@@ -10,30 +8,7 @@
         <font-icon name="xiayibu" size="30" color="#8d8d8d" />
     </view>
     <view wx:for="{{arr}}" class="goods-info">
-        <view wx:if="{{item.class != 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;">
-            <view class="v-img">
-                <image class="img" src="{{url+'/upload/'+item.bigpic}}" />
-            </view>
-            <view style="margin-left:20rpx;">
-                <view style="font-size:12pt;" class="line-limit-length">
-                    {{item.supp_gd_brand}}
-                </view>
-                <view style="font-size:10pt;color:#8d8d8d;" class="line-limit-length">
-                    {{item.supp_gd_type}}-{{item.supp_gd_taste}}
-                </view>
-                <view style="display:flex;justify-content: space-between;margin-top:10rpx;">
-                    <text style="font-size:10pt;color:#8d8d8d;">X{{item.purchaseQuantity}}</text>
-                    <text style="font-size:10pt;color:orange;">￥{{item.subtotal}}</text>
-                </view>
-                <view style="display:flex;align-items: center;margin-top:15rpx;">
-                    <text style="font-size:10pt;color:#8d8d8d;line-height:0;">
-                        {{item.state}}  {{item.creationTime}}
-                    </text>
-                    <text class="comment">评价</text>
-                </view>
-            </view>
-        </view>
-        <view wx:if="{{item.class == 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;">
+        <view wx:if="{{item.class == 2}}" style="display:flex;border-bottom: 1rpx solid rgb(233, 233, 233);padding-bottom:20rpx;" data-serviceId="{{item._id}}" bindtap="toserviceDetails">
             <view class="v-img">
                 <image class="img" src="{{url+'/upload/'+item.cover_map}}" />
             </view>
@@ -43,9 +18,9 @@
                 <view style="font-size:10pt;color:orange;margin-top:10rpx;">{{item.sur_date}}</view>
                 <view style="display:flex;align-items: center;margin-top:15rpx;">
                     <text style="font-size:10pt;color:#8d8d8d;">{{item.state}}</text>
-                    <font-icon name="erweima" size="30" color="orange" wx:if="{{item.state == '未完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" bind:tap="generateQRCode" />
+                    <font-icon name="erweima" size="30" color="orange" wx:if="{{item.state == '未完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" catch:tap="generateQRCode" />
                     <font-icon name="erweima" size="30" color="#8d8d8d" wx:if="{{item.state == '已完成'}}" style="margin-left:241rpx;" data-date="{{item.sur_date}}" data-id="{{item._id}}" />
-                    <text class="comment">评价</text>
+                    <text class="comment" style="border:1rpx solid rgb(233,233,233);" catch:tap="nothing">评价</text>
                 </view>
             </view>
         </view>
@@ -53,7 +28,9 @@
 </view>
 <view class="canvas-box" wx:if="{{hidden}}">
     <view>
-        <view style="text-align:right;margin-bottom:15rpx;"><font-icon name="guanbi1" size="50" color="white" bindtap="closeQRcode" /></view>
+        <view style="text-align:right;margin-bottom:15rpx;">
+            <font-icon name="guanbi1" size="50" color="white" bindtap="closeQRcode" />
+        </view>
         <canvas hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas" />
     </view>
 </view>

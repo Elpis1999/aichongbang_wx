@@ -2,6 +2,11 @@
 let {
   url
 } = require("../../config/index");
+let {
+  conversionFormatTime,
+  deepcopy
+
+} = require("../../utils/util");
 Page({
 
   /**
@@ -14,7 +19,9 @@ Page({
     allElection: true,
     storeGroup: [],
     money: 0,
-    reservationService: []
+    reservationService: [],
+    serviceArr: [],
+    index: 0
   },
 
   /**
@@ -37,6 +44,7 @@ Page({
         data
       }) => {
         let reservationService = data.reservationService;
+        console.log(reservationService, "reservationService");
         data.shoppingCart = [...data.shoppingCart, ...reservationService];
         //数组去重
         let hash = {};
@@ -52,8 +60,11 @@ Page({
           for (let j = 0; j < data.shoppingCart.length; j++) {
             if (newArr[i].store._id == data.shoppingCart[j].store._id) {
               let newGoods = { ...data.shoppingCart[j],
-                choice: 1
+                choice: 1,
               };
+              if (newGoods.class === "2") {
+                newGoods.timeSlot = conversionFormatTime(newGoods.sur_date);
+              }
               newAry.push(newGoods);
             }
           }
@@ -61,12 +72,19 @@ Page({
           storeGroup.push(1);
         }
 
+        //判断购物车中是否有商品
+        let allElection = true;
+        if (storeGroup.length === 0) {
+          allElection = false;
+        }
         this.setData({
           shoppingCart: arr,
           storeGroup,
-          reservationService
+          reservationService,
+          allElection,
         }, function () {
           this.calculationMoney();
+          this.setTimeArr();
         });
       }
     });
@@ -145,9 +163,45 @@ Page({
 
   },
   edit() {
+    this.calculationMoney();
     this.setData({
       bianji: !this.data.bianji
     });
+  },
+  setTimeArr() {
+    let serviceArr = [];
+    let shoppingCart = [];
+    for (let i = 0; i < this.data.shoppingCart.length; i++) {
+      let arr = [...this.data.shoppingCart[i]];
+      shoppingCart.push(arr);
+    }
+    for (let i = 0; i < shoppingCart.length; i++) {
+      for (let j = 0; j < shoppingCart[i].length; j++) {
+        if (shoppingCart[i][j].class == 2) {
+          wx.request({
+            method: 'get',
+            url: url + '/wxgoods/serviceById',
+            data: {
+              id: shoppingCart[i][j]._id
+            },
+            success: ({
+              data
+            }) => {
+              let {
+                timeArr,
+                timeAry
+              } = conversionFormatTime(data.sur_date);
+              data.timeArr = timeArr;
+              data.timeAry = timeAry;
+              serviceArr.push(data);
+              this.setData({
+                serviceArr
+              });
+            }
+          });
+        }
+      }
+    }
   },
   iconSwitch(e) {
     let index = e.currentTarget.dataset.index;
@@ -256,7 +310,6 @@ Page({
     });
   },
   notFullyElectedStore(index) {
-    console.log(index);
     let storeGroup = this.data.storeGroup;
     let shoppingCart = this.data.shoppingCart;
     let bl = true;
@@ -277,7 +330,27 @@ Page({
   changeNumber(e) {
     let id = e.currentTarget.dataset.id;
     let num = e.detail;
-    let shoppingCart = this.data.shoppingCart;
+
+    //复制二维数组
+    let shoppingCart = [];
+    for (let i = 0; i < this.data.shoppingCart.length; i++) {
+      let arr = [...this.data.shoppingCart[i]];
+      shoppingCart.push(arr);
+    }
+
+
+    for (let i = 0; i < shoppingCart.length; i++) {
+      for (let j = 0; j < shoppingCart[i].length; j++) {
+        if (shoppingCart[i][j].class == 2) {
+          shoppingCart[i].splice(j, 1);
+        }
+      }
+    }
+    for (let i = 0; i < shoppingCart.length; i++) {
+      if (shoppingCart[i].length === 0) {
+        shoppingCart.splice(i, 1);
+      }
+    }
     for (let i = 0; i < shoppingCart.length; i++) {
       for (let j = 0; j < shoppingCart[i].length; j++) {
         if (shoppingCart[i][j]._id == id) {
@@ -286,19 +359,18 @@ Page({
         }
       }
     }
-    this.setData({
-      shoppingCart
-    }, function () {
-      let openId = wx.getStorageSync('openId');
-      let shoppingCart = this.data.shoppingCart;
-      wx.request({
-        method: "post",
-        url: url + "/wxgoods/updateShoppingCart",
-        data: {
-          openId,
-          shoppingCart
-        }
-      });
+
+    let openId = wx.getStorageSync('openId');
+    wx.request({
+      method: "post",
+      url: url + "/wxgoods/updateShoppingCart",
+      data: {
+        openId,
+        shoppingCart
+      },
+      success: () => {
+        this.show();
+      }
     });
   },
   settlement(e) {
@@ -309,12 +381,7 @@ Page({
       data: 0
     })
 
-
-    let newShoppingCart = [];
-    for (let i = 0; i < shoppingCart.length; i++) {
-      let arr = [...shoppingCart[i]];
-      newShoppingCart.push(arr);
-    }
+    let newShoppingCart = deepcopy(shoppingCart);
 
     for (let i = 0; i < newShoppingCart.length; i++) {
       for (let j = 0; j < newShoppingCart[i].length; j++) {
@@ -323,16 +390,64 @@ Page({
         }
       }
     }
-
     for (let i = 0; i < newShoppingCart.length; i++) {
       if (newShoppingCart[i].length === 0) {
         newShoppingCart.splice(i, 1);
       }
     }
 
-    wx.navigateTo({
-      url: "../order/order" + "?shoppingCart=" + JSON.stringify(newShoppingCart)
-    });
+    for (let i = 0; i < newShoppingCart.length; i++) {
+      for (let j = 0; j < newShoppingCart[i].length; j++) {
+        console.log(newShoppingCart[i][j].choice);
+        if (newShoppingCart[i][j].choice == 0) {
+          newShoppingCart[i].splice(j, 1);
+        }
+      }
+    }
+    for (let i = 0; i < newShoppingCart.length; i++) {
+      if (newShoppingCart[i].length === 0) {
+        newShoppingCart.splice(i, 1);
+      }
+    }
+
+    //判断购物车中是否有商品
+    console.log(newShoppingCart);
+    if (newShoppingCart.length === 0) {
+      wx.showModal({
+        title: '提示',
+        content: '购物车中没有物品!',
+        success: function (res) {
+          if (res.confirm) {
+            return;
+          }
+        }
+      })
+      return;
+    } else {
+      //判断购物车中是否有实效的物品
+      let flag = true;
+      for (let i = 0; i < newShoppingCart.length; i++) {
+        for (let j = 0; j < newShoppingCart[i].length; j++) {
+          if (newShoppingCart[i][j].timeSlot === "已失效") {
+            flag = false;
+            wx.showModal({
+              title: '提示',
+              content: '购物车中包含失效物品!',
+              success: function (res) {
+                if (res.confirm) {
+                  return;
+                }
+              }
+            })
+          }
+        }
+      }
+      if (flag) {
+        wx.navigateTo({
+          url: "../order/order" + "?shoppingCart=" + JSON.stringify(newShoppingCart)
+        });
+      }
+    }
   },
   delete(e) {
     console.log(e);
@@ -391,5 +506,39 @@ Page({
         }
       }
     })
-  }
+  },
+  selectionTime(e) {
+    let serviceId = e.currentTarget.dataset.serviceid;
+    wx.request({
+      method: "get",
+      url: url + "/wxgoods/serviceById",
+      data: {
+        id: serviceId
+      },
+      success: ({
+        data
+      }) => {
+        let {
+          timeArr,
+          timeAry
+        } = conversionFormatTime(data.sur_date);
+        this.setData({
+          timeArr,
+          timeAry
+        });
+      }
+    });
+  },
+  toGoodsDetails(e) {
+    let goodsId = e.currentTarget.dataset.goodsid;
+    wx.navigateTo({
+      url: `../goodsdetails/goodsdetails?goodsId=${goodsId}`
+    });
+  },
+  toserviceDetails(e) {
+    let serviceId = e.currentTarget.dataset.serviceid;
+    wx.navigateTo({
+      url: `../servicedetails/servicedetails?serviceId=${serviceId}`
+    });
+  },
 })

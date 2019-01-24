@@ -4,9 +4,5 @@
     "goods-banner": "../../components/goods-banner/goods-banner",
     "counter": "../../components/counter/counter"
   },
-  "navigationBarBackgroundColor": "#000",
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "服务详情",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "navigationBarTitleText": "服务详情"
 }

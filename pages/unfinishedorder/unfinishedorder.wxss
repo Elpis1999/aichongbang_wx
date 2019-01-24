@@ -1,9 +1,6 @@
 /* pages/finishedorder/finishedorder.wxss */
 
 /* pages/allorder/allorder.wxss */
-page {
-    background-color: rgb(233, 233, 233);
-}
 
 .shopInfo {
     display: flex;

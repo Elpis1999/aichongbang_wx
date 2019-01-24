@@ -2,5 +2,5 @@
   "usingComponents": {
     "font-icon": "../../components/font-icon/font-icon"
   },
-  "navigationBarTitleText": "已完成订单"
+  "navigationBarTitleText": "店铺一览"
 }

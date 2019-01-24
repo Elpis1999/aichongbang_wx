@@ -126,10 +126,9 @@ Page({
   },
   addToCart() {
     let openId = wx.getStorageSync('openId');
-    let goodsInfo = { ...this.data.goodsInfo
-    };
+    let goodsInfo = { ...this.data.goodsInfo};
     goodsInfo.purchaseQuantity = this.data.number;
-    goodsInfo.subtotal = (this.data.number * this.data.goodsInfo.saleprice).toFixed(2);
+    goodsInfo.subtotal = (goodsInfo.purchaseQuantity * this.data.goodsInfo.saleprice).toFixed(2);
     wx.request({
       method: "post",
       url: url + "/wxgoods/addGoods",

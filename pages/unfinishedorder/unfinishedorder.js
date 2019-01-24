@@ -181,5 +181,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  toShop(e) {
+    let storeId = e.currentTarget.dataset.storeid;
+    wx.navigateTo({
+      url: `../shop/shop?storeId=${storeId}`
+    });
+  },
+  toserviceDetails(e) {
+    let serviceId = e.currentTarget.dataset.serviceid;
+    wx.navigateTo({
+      url: `../servicedetails/servicedetails?serviceId=${serviceId}`
+    });
+  },
+  nothing() {
+    return;
   }
 })
